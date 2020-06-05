@@ -4,9 +4,6 @@ import RecipesLibrary from "./components /recipe-library/RecipesLibrary";
 import ShoppingList from "./components /shopping-list/ShoppingList";
 import "./App.css";
 
-// import { RecipesLibrary } from "./components/recipe-library/RecipesLibrary";
-// import { ShoppingList } from "./components/shopping-list/ShoppingList";
-
 function App() {
   return (
     <Router>

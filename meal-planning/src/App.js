@@ -1,7 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import RecipesLibrary from "./components /recipe-library/RecipesLibrary";
+import ShoppingList from "./components /shopping-list/ShoppingList";
 import "./App.css";
+
+// import { RecipesLibrary } from "./components/recipe-library/RecipesLibrary";
+// import { ShoppingList } from "./components/shopping-list/ShoppingList";
 
 function App() {
   return (
@@ -18,8 +22,12 @@ function App() {
           </ul>
         </nav>
         <Switch>
-          <Route path="/recipes">Recipes Library</Route>
-          <Route path="/shopping-list">Shopping List</Route>
+          <Route path="/recipes">
+            <RecipesLibrary />
+          </Route>
+          <Route path="/shopping-list">
+            <ShoppingList />
+          </Route>
         </Switch>
       </div>
     </Router>

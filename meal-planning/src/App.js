@@ -13,10 +13,14 @@ function App() {
               <Link to="/recipes">Recipe Library</Link>
             </li>
             <li>
-              <Link to="/shopping-list">View Shopping Lists</Link>
+              <Link to="/shopping-list">View Shopping List</Link>
             </li>
           </ul>
         </nav>
+        <Switch>
+          <Route path="/recipes">Recipes Library</Route>
+          <Route path="/shopping-list">Shopping List</Route>
+        </Switch>
       </div>
     </Router>
   );

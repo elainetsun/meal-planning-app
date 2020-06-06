@@ -1,0 +1,11 @@
+.nav {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+
+  &-link {
+    padding: 12px 16px;
+    color: white;
+    text-decoration: none;
+  }
+}

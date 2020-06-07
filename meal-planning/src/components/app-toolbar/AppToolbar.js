@@ -20,16 +20,18 @@ function AppToolbar() {
           </nav>
         </Toolbar>
       </AppBar>
-      <div>
-        <Switch>
-          <Route path="/recipes">
-            <RecipesLibrary />
-          </Route>
-          <Route path="/shopping-list">
-            <ShoppingList />
-          </Route>
-        </Switch>
-      </div>
+      <main>
+        <section>
+          <Switch>
+            <Route path="/recipes">
+              <RecipesLibrary />
+            </Route>
+            <Route path="/shopping-list">
+              <ShoppingList />
+            </Route>
+          </Switch>
+        </section>
+      </main>
     </Router>
   );
 }

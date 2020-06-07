@@ -1,7 +1,10 @@
 import React from "react";
+import RecipeCard from '../recipe-card/RecipeCard';
 
 function RecipesLibrary() {
-  return <h3>Recipies Library</h3>;
+  return (
+    <RecipeCard />
+  )
 }
 
 export default RecipesLibrary;

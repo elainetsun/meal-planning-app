@@ -21,16 +21,14 @@ function AppToolbar() {
         </Toolbar>
       </AppBar>
       <main>
-        <section>
-          <Switch>
-            <Route path="/recipes">
-              <RecipesLibrary />
-            </Route>
-            <Route path="/shopping-list">
-              <ShoppingList />
-            </Route>
-          </Switch>
-        </section>
+        <Switch>
+          <Route path="/recipes">
+            <RecipesLibrary />
+          </Route>
+          <Route path="/shopping-list">
+            <ShoppingList />
+          </Route>
+        </Switch>
       </main>
     </Router>
   );

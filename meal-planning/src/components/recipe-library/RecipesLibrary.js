@@ -1,16 +1,11 @@
 import React from "react";
 import RecipeCard from '../recipe-card/RecipeCard';
+import styles from './RecipesLibrary.module.scss';
 
 function RecipesLibrary() {
 
-  const styles = {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    paddingTop: '40px'
-  }
-
   return (
-    <section style={styles} className="recipe-section">
+    <section className={styles.recipeSection} >
       <RecipeCard />
       <RecipeCard />
       <RecipeCard />

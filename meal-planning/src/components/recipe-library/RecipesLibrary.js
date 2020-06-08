@@ -14,6 +14,8 @@ function RecipesLibrary() {
       <RecipeCard />
       <RecipeCard />
       <RecipeCard />
+      <RecipeCard />
+      <RecipeCard />
     </section>
   )
 }

@@ -1,0 +1,15 @@
+.card {
+    flex: 0 1 18%;
+
+    .header {
+        background: lightblue;
+    }
+
+    .actions {
+        justify-content: space-between;
+    }
+
+    .deleteIcon {
+        margin-left: auto;
+    }
+}

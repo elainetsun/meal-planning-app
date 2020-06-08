@@ -20,7 +20,7 @@ function AppToolbar() {
           </nav>
         </Toolbar>
       </AppBar>
-      <div>
+      <main>
         <Switch>
           <Route path="/recipes">
             <RecipesLibrary />
@@ -29,7 +29,7 @@ function AppToolbar() {
             <ShoppingList />
           </Route>
         </Switch>
-      </div>
+      </main>
     </Router>
   );
 }

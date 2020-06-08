@@ -4,9 +4,9 @@ import "./App.scss";
 
 function App() {
   return (
-    <div>
+    <>
       <AppToolbar />
-    </div>
+    </>
   );
 }
 

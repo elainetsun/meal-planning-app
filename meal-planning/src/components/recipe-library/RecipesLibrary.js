@@ -1,14 +1,25 @@
 import React from "react";
-import "./RecipesLibrary.scss";
+import RecipeCard from "../recipe-card/RecipeCard";
+import styles from "./RecipesLibrary.module.scss";
 
 import AddRecipeDialog from "../add-recipe-dialog/AddRecipeDialog";
 
 function RecipesLibrary() {
   return (
-    <div className="recipesContainer">
-      <h3>Recipes Library</h3>
-      <AddRecipeDialog />
-    </div>
+    <>
+      <div className={styles.recipesContainer}>
+        <h3>Recipes Library</h3>
+        <AddRecipeDialog />
+      </div>
+
+      <section className={styles.recipeSection}>
+        <RecipeCard />
+        <RecipeCard />
+        <RecipeCard />
+        <RecipeCard />
+        <RecipeCard />
+      </section>
+    </>
   );
 }
 

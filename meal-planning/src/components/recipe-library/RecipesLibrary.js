@@ -1,7 +1,15 @@
 import React from "react";
+import "./RecipesLibrary.scss";
+
+import AddRecipeDialog from "../add-recipe-dialog/AddRecipeDialog";
 
 function RecipesLibrary() {
-  return <h3>Recipies Library</h3>;
+  return (
+    <div className="recipesContainer">
+      <h3>Recipes Library</h3>
+      <AddRecipeDialog />
+    </div>
+  );
 }
 
 export default RecipesLibrary;

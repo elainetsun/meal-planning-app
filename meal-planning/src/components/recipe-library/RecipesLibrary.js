@@ -7,7 +7,7 @@ import AddRecipeDialog from "../add-recipe-dialog/AddRecipeDialog";
 function RecipesLibrary() {
   return (
     <>
-      <div className={styles.recipesContainer}>
+      <div className={styles.recipesHeader}>
         <h3>Recipes Library</h3>
         <AddRecipeDialog />
       </div>

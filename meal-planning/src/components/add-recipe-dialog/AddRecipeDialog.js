@@ -6,7 +6,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
-import "./AddRecipeDialog.scss";
+import styles from "./AddRecipeDialog.module.scss";
 
 export default function AddRecipeDialog() {
   const defaultRecipeModalState = {
@@ -41,7 +41,7 @@ export default function AddRecipeDialog() {
   };
 
   return (
-    <div className="dialogContainer">
+    <div className={styles.dialogContainer}>
       <Button size="small" onClick={handleOpen} endIcon={<AddCircleOutline />}>
         Add
       </Button>

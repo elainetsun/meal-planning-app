@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
 import styles from "./AddRecipeDialog.module.scss";
 
-export default function AddRecipeDialog() {
+export default function AddRecipeDialog({ handleDialogSumbit }) {
   const defaultRecipeModalState = {
     isOpen: false,
   };
@@ -28,9 +28,7 @@ export default function AddRecipeDialog() {
   const handleSubmit = (event) => {
     event.preventDefault();
     handleClose();
-    alert(
-      `A recipe was submitted: ${recipeState.name}, ${recipeState.description}`
-    );
+    handleDialogSumbit(recipeState);
   };
 
   const handleChange = (event) => {

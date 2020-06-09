@@ -1,5 +1,6 @@
 .card {
     flex: 0 1 18%;
+    transition: all .3s;
 
     .header {
         background: lightblue;
@@ -7,6 +8,10 @@
 
     .actions {
         justify-content: space-between;
+    }
+
+    .favoriteIcon {
+        transition: all .3s;
     }
 
     .deleteIcon {

@@ -5,6 +5,21 @@ import styles from "./RecipesLibrary.module.scss";
 import AddRecipeDialog from "../add-recipe-dialog/AddRecipeDialog";
 
 function RecipesLibrary() {
+  const dummyDataRecipes = [
+    {
+      name: "Curry",
+      description: "Yum",
+    },
+    {
+      name: "Pasta",
+      description: "yuuuuum",
+    },
+  ];
+  console.log(dummyDataRecipes[0]);
+  const [recipesLibraryState, setRecipesLibrary] = React.useState(
+    dummyDataRecipes
+  );
+
   return (
     <>
       <div className={styles.recipesHeader}>
@@ -13,11 +28,7 @@ function RecipesLibrary() {
       </div>
 
       <section className={styles.recipeSection}>
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
+        <RecipeCard recipe={dummyDataRecipes[0]} />
       </section>
     </>
   );

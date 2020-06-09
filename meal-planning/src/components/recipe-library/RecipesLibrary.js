@@ -20,11 +20,15 @@ function RecipesLibrary() {
     defaultRecipes
   );
 
+  const handleDialogSumbit = (recipe) => {
+    setRecipesLibrary((recipes) => recipes.concat(recipe));
+  };
+
   return (
     <>
       <div className={styles.recipesHeader}>
         <h3>Recipes Library</h3>
-        <AddRecipeDialog />
+        <AddRecipeDialog handleDialogSumbit={handleDialogSumbit} />
       </div>
 
       <section className={styles.recipeSection}>

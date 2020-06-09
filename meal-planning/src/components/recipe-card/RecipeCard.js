@@ -22,7 +22,7 @@ const RecipeCard = ({ recipe }) => {
   }
 
   const handleDeleteClick = (e) => {
-    const card = document.querySelector(`.${styles.card}`);
+    const card = document.querySelector(`div[data-recipe-id="${recipe.id}"]`);
     
     if (window.confirm(`Are you sure you want to delete ${recipe.name}?`)) {
       card.remove();
@@ -34,7 +34,7 @@ const RecipeCard = ({ recipe }) => {
   }
 
   return (
-    <Card className={styles.card}>
+    <Card data-recipe-id={recipe.id} className={styles.card}>
       <CardHeader title={recipe.name} className={styles.header} />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">

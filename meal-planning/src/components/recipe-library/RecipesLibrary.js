@@ -1,7 +1,8 @@
 import React from "react";
 import RecipeCard from "../recipe-card/RecipeCard";
 import styles from "./RecipesLibrary.module.scss";
-
+import Button from "@material-ui/core/Button";
+import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
 import AddRecipeDialog from "../add-recipe-dialog/AddRecipeDialog";
 
 function RecipesLibrary() {
@@ -18,19 +19,47 @@ function RecipesLibrary() {
     },
   ];
 
-  const [recipesLibraryState, setRecipesLibrary] = React.useState(
-    defaultRecipes
-  );
+  const [recipesLibraryState, setRecipesLibraryState] = React.useState({
+    isModalOpen: false,
+    recipes: defaultRecipes,
+  });
+
+  const openModal = () => {
+    setRecipesLibraryState({ ...recipesLibraryState, isModalOpen: true });
+  };
+
+  const handleDialogClose = () => {
+    setRecipesLibraryState({
+      ...recipesLibraryState,
+      isModalOpen: false,
+    });
+  };
+
+  const handleDialogSumbit = (recipe) => {
+    setRecipesLibraryState((state) => {
+      return {
+        isModalOpen: false,
+        recipes: state.recipes.concat(recipe),
+      };
+    });
+  };
 
   return (
     <>
       <div className={styles.recipesHeader}>
         <h3>Recipes Library</h3>
-        <AddRecipeDialog />
+        <Button size="small" onClick={openModal} endIcon={<AddCircleOutline />}>
+          Add
+        </Button>
+        <AddRecipeDialog
+          isOpen={recipesLibraryState.isModalOpen}
+          handleDialogSumbit={handleDialogSumbit}
+          handleDialogClose={handleDialogClose}
+        />
       </div>
 
       <section className={styles.recipeSection}>
-        {recipesLibraryState.map((recipe) => {
+        {recipesLibraryState.recipes.map((recipe) => {
           return <RecipeCard recipe={recipe} key={recipe.id}/>;
         })}
       </section>

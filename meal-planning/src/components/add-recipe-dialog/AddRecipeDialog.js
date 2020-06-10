@@ -5,24 +5,17 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
+
 import styles from "./AddRecipeDialog.module.scss";
 
-export default function AddRecipeDialog({ handleDialogSumbit }) {
-  const defaultRecipeModalState = {
-    isOpen: false,
-  };
-  const [recipeState, setRecipe] = React.useState(defaultRecipeModalState);
-
-  const handleOpen = () => {
-    setRecipe({
-      ...setRecipe,
-      isOpen: true,
-    });
-  };
+export default function AddRecipeDialog({ isOpen, handleDialogSumbit }) {
+  const [recipeState, setRecipe] = React.useState({
+    name: "",
+    description: "",
+  });
 
   const handleClose = () => {
-    setRecipe({ ...recipeState, isOpen: false });
+    isOpen = false;
   };
 
   const handleSubmit = (event) => {
@@ -40,11 +33,8 @@ export default function AddRecipeDialog({ handleDialogSumbit }) {
 
   return (
     <div className={styles.dialogContainer}>
-      <Button size="small" onClick={handleOpen} endIcon={<AddCircleOutline />}>
-        Add
-      </Button>
       <Dialog
-        open={recipeState.isOpen}
+        open={isOpen}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >

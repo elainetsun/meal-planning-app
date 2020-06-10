@@ -58,7 +58,11 @@ function RecipesLibrary() {
 
       <section className={styles.recipeSection}>
         {recipesLibraryState.recipes.map((recipe) => {
-          return <RecipeCard recipe={recipe} />;
+          return (
+            <div className={styles.card}>
+              <RecipeCard recipe={recipe} />
+            </div>
+          );
         })}
       </section>
     </>

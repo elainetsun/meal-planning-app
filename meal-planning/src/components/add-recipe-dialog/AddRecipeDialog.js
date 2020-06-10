@@ -8,11 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import styles from "./AddRecipeDialog.module.scss";
 
-export default function AddRecipeDialog({
-  isOpen,
-  handleDialogClose,
-  handleDialogSumbit,
-}) {
+const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
   const defaultRecipeState = {
     name: "",
     description: "",
@@ -76,4 +72,6 @@ export default function AddRecipeDialog({
       </Dialog>
     </div>
   );
-}
+};
+
+export default AddRecipeDialog;

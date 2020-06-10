@@ -8,10 +8,12 @@ import AddRecipeDialog from "../add-recipe-dialog/AddRecipeDialog";
 function RecipesLibrary() {
   const defaultRecipes = [
     {
+      id: 1,
       name: "Curry",
       description: "Yum",
     },
     {
+      id: 2,
       name: "Pasta",
       description: "yuuuuum",
     },
@@ -60,7 +62,7 @@ function RecipesLibrary() {
         {recipesLibraryState.recipes.map((recipe) => {
           return (
             <div className={styles.card}>
-              <RecipeCard recipe={recipe} />
+              <RecipeCard recipe={recipe} key={recipe.id} />
             </div>
           );
         })}

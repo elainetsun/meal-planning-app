@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
 import styles from "./AddRecipeDialog.module.scss";
 
-export default function AddRecipeDialog({ handleDialogSumbit }) {
+const AddRecipeDialog = ({ handleDialogSumbit }) => {
   const defaultRecipeModalState = {
     isOpen: false,
   };
@@ -80,4 +80,6 @@ export default function AddRecipeDialog({ handleDialogSumbit }) {
       </Dialog>
     </div>
   );
-}
+};
+
+export default AddRecipeDialog;

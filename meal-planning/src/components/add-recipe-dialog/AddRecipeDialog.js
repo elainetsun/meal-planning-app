@@ -8,20 +8,26 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import styles from "./AddRecipeDialog.module.scss";
 
-export default function AddRecipeDialog({ isOpen, handleDialogSumbit }) {
-  const [recipeState, setRecipe] = React.useState({
+export default function AddRecipeDialog({
+  isOpen,
+  handleDialogClose,
+  handleDialogSumbit,
+}) {
+  const defaultRecipeState = {
     name: "",
     description: "",
-  });
+  };
+
+  const [recipeState, setRecipe] = React.useState(defaultRecipeState);
 
   const handleClose = () => {
-    isOpen = false;
+    handleDialogClose();
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleClose();
     handleDialogSumbit(recipeState);
+    setRecipe(defaultRecipeState);
   };
 
   const handleChange = (event) => {

@@ -26,6 +26,13 @@ function RecipesLibrary() {
     setRecipesLibraryState({ ...recipesLibraryState, isModalOpen: true });
   };
 
+  const handleDialogClose = () => {
+    setRecipesLibraryState({
+      ...recipesLibraryState,
+      isModalOpen: false,
+    });
+  };
+
   const handleDialogSumbit = (recipe) => {
     setRecipesLibraryState((state) => {
       return {
@@ -45,6 +52,7 @@ function RecipesLibrary() {
         <AddRecipeDialog
           isOpen={recipesLibraryState.isModalOpen}
           handleDialogSumbit={handleDialogSumbit}
+          handleDialogClose={handleDialogClose}
         />
       </div>
 

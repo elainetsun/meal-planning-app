@@ -5,13 +5,14 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
 import styles from "./AddRecipeDialog.module.scss";
+import TagSelector from "../tag-selector/TagSelector";
 
 const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
   const defaultRecipeState = {
     name: "",
     description: "",
+    ingredients: "",
   };
 
   const [recipeState, setRecipe] = React.useState(defaultRecipeState);
@@ -59,6 +60,15 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
               onChange={handleChange}
               fullWidth
             />
+            <TextField
+              id="ingredients"
+              label="Ingredients"
+              type="text"
+              defaultValue={recipeState.ingredients}
+              onChange={handleChange}
+              fullWidth
+            />
+            <TagSelector />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">

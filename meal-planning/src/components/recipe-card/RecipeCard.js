@@ -9,11 +9,13 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import styles from "./RecipeCard.module.scss";
+import EditRecipeDialog from '../edit-recipe-dialog/EditRecipeDialog';
 import PropTypes from "prop-types";
 
 
 const RecipeCard = ({ recipe }) => {
-  const [favorite, setFavorite ] = useState(false);
+  const [ favorite, setFavorite ] = useState(false);
+  const [ editMode, setEditMode ] = useState(false);
 
   const favoritedColor = favorite ? 'red' : '#0000008a';
 
@@ -30,10 +32,11 @@ const RecipeCard = ({ recipe }) => {
   }
 
   const handleEditClick = (e) => {
-
+    setEditMode(!editMode);
   }
 
   return (
+    <>
     <Card data-recipe-id={recipe.id} className={styles.card}>
       <CardHeader title={recipe.name} className={styles.header} />
       <CardContent>
@@ -45,14 +48,17 @@ const RecipeCard = ({ recipe }) => {
         <IconButton aria-label="add to favorites" className={styles.favoriteIcon} style={{color: favoritedColor}} onClick={handleFavoriteClick}>
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="add to favorites" className={styles.deleteIcon} onClick={handleDeleteClick} >
+        <IconButton aria-label="delete recipe" className={styles.deleteIcon} onClick={handleDeleteClick} >
           <DeleteIcon />
         </IconButton>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="edit recipe" onClick={handleEditClick}>
           <EditIcon />
         </IconButton>
       </CardActions>
     </Card>
+
+    {editMode && <EditRecipeDialog onClose={handleEditClick} name={recipe.name} description={recipe.description} />}
+    </>
   );
 };
 

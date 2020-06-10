@@ -4,11 +4,11 @@ import styles from "./TagSelector.module.scss";
 
 const TagSelector = () => {
   const mealsChipData = [
-    { key: 0, label: "Breakfast" },
-    { key: 1, label: "Lunch" },
-    { key: 2, label: "Dinner" },
-    { key: 3, label: "Snack" },
-    { key: 4, label: "Dessert" },
+    { key: 0, label: "breakfast" },
+    { key: 1, label: "lunch" },
+    { key: 2, label: "dinner" },
+    { key: 3, label: "snack" },
+    { key: 4, label: "dessert" },
   ];
   const timeChipData = [
     { key: 5, label: "~10 min" },
@@ -30,7 +30,7 @@ const TagSelector = () => {
 
   const handleClick = (key) => {
     if (activeIndex.indexOf(key) > -1) {
-      setActiveIndex((keys) => keys.filter((k) => k != key));
+      setActiveIndex((keys) => keys.filter((k) => k !== key));
     } else {
       setActiveIndex((keys) => keys.concat(key));
     }

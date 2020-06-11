@@ -51,11 +51,7 @@ const RecipesLibrary = () => {
 
       <section className={styles.recipeSection}>
         {recipes.map(recipe => {
-          return (
-            <div className={styles.card}>
-              <RecipeCard recipe={recipe} key={recipe.id} />
-            </div>
-          );
+          return <RecipeCard recipe={recipe} key={recipe.id} />;
         })}
       </section>
     </>

@@ -1,11 +1,11 @@
-import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
-import RecipesLibrary from "../recipe-library/RecipesLibrary";
-import ShoppingList from "../shopping-list/ShoppingList";
+import React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import RecipesLibrary from '../recipe-library/RecipesLibrary';
+import ShoppingList from '../shopping-list/ShoppingList';
 
-function AppToolbar() {
+const AppToolbar = () => {
   return (
     <Router>
       <AppBar position="static">
@@ -32,6 +32,6 @@ function AppToolbar() {
       </main>
     </Router>
   );
-}
+};
 
 export default AppToolbar;

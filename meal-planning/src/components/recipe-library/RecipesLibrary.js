@@ -1,47 +1,38 @@
-import React from "react";
-import RecipeCard from "../recipe-card/RecipeCard";
-import styles from "./RecipesLibrary.module.scss";
-import Button from "@material-ui/core/Button";
-import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
-import AddRecipeDialog from "../add-recipe-dialog/AddRecipeDialog";
+import React, { useState } from 'react';
+import RecipeCard from '../recipe-card/RecipeCard';
+import styles from './RecipesLibrary.module.scss';
+import Button from '@material-ui/core/Button';
+import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
+import AddRecipeDialog from '../add-recipe-dialog/AddRecipeDialog';
 
-function RecipesLibrary() {
+const RecipesLibrary = () => {
   const defaultRecipes = [
     {
       id: 1,
-      name: "Curry",
-      description: "Yum",
+      name: 'Curry',
+      description: 'Yum'
     },
     {
       id: 2,
-      name: "Pasta",
-      description: "yuuuuum",
-    },
+      name: 'Pasta',
+      description: 'yuuuuum'
+    }
   ];
 
-  const [recipesLibraryState, setRecipesLibraryState] = React.useState({
-    isModalOpen: false,
-    recipes: defaultRecipes,
-  });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [recipes, setRecipes] = useState(defaultRecipes);
 
   const openModal = () => {
-    setRecipesLibraryState({ ...recipesLibraryState, isModalOpen: true });
+    setIsModalOpen(true);
   };
 
   const handleDialogClose = () => {
-    setRecipesLibraryState({
-      ...recipesLibraryState,
-      isModalOpen: false,
-    });
+    setIsModalOpen(false);
   };
 
-  const handleDialogSumbit = (recipe) => {
-    setRecipesLibraryState((state) => {
-      return {
-        isModalOpen: false,
-        recipes: state.recipes.concat(recipe),
-      };
-    });
+  const handleDialogSumbit = recipe => {
+    setIsModalOpen(false);
+    setRecipes(recipes.concat(recipe));
   };
 
   return (
@@ -52,23 +43,19 @@ function RecipesLibrary() {
           Add
         </Button>
         <AddRecipeDialog
-          isOpen={recipesLibraryState.isModalOpen}
+          isOpen={isModalOpen}
           handleDialogSumbit={handleDialogSumbit}
           handleDialogClose={handleDialogClose}
         />
       </div>
 
       <section className={styles.recipeSection}>
-        {recipesLibraryState.recipes.map((recipe) => {
-          return (
-            <div className={styles.card}>
-              <RecipeCard recipe={recipe} key={recipe.id} />
-            </div>
-          );
+        {recipes.map(recipe => {
+          return <RecipeCard recipe={recipe} key={recipe.id} />;
         })}
       </section>
     </>
   );
-}
+};
 
 export default RecipesLibrary;

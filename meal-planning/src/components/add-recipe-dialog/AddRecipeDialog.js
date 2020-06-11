@@ -12,7 +12,7 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
   const defaultRecipeState = {
     name: '',
     description: '',
-    ingredients: '',
+    ingredients: ''
   };
 
   const [recipeState, setRecipe] = useState(defaultRecipeState);
@@ -21,16 +21,16 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
     handleDialogClose();
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     handleDialogSumbit(recipeState);
     setRecipe(defaultRecipeState);
   };
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setRecipe({
       ...recipeState,
-      [event.target.id]: event.target.value,
+      [event.target.id]: event.target.value
     });
   };
 

@@ -10,13 +10,13 @@ const RecipesLibrary = () => {
     {
       id: 1,
       name: 'Curry',
-      description: 'Yum',
+      description: 'Yum'
     },
     {
       id: 2,
       name: 'Pasta',
-      description: 'yuuuuum',
-    },
+      description: 'yuuuuum'
+    }
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +30,7 @@ const RecipesLibrary = () => {
     setIsModalOpen(false);
   };
 
-  const handleDialogSumbit = (recipe) => {
+  const handleDialogSumbit = recipe => {
     setIsModalOpen(false);
     setRecipes(recipes.concat(recipe));
   };
@@ -50,7 +50,7 @@ const RecipesLibrary = () => {
       </div>
 
       <section className={styles.recipeSection}>
-        {recipes.map((recipe) => {
+        {recipes.map(recipe => {
           return (
             <div className={styles.card}>
               <RecipeCard recipe={recipe} key={recipe.id} />

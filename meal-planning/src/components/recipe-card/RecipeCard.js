@@ -16,11 +16,11 @@ const RecipeCard = ({ recipe }) => {
 
   const favoritedColor = favorite ? 'red' : '#0000008a';
 
-  const handleFavoriteClick = (e) => {
+  const handleFavoriteClick = e => {
     setFavorite(!favorite);
   };
 
-  const handleDeleteClick = (e) => {
+  const handleDeleteClick = e => {
     const card = document.querySelector(`div[data-recipe-id="${recipe.id}"]`);
 
     if (window.confirm(`Are you sure you want to delete ${recipe.name}?`)) {
@@ -65,8 +65,8 @@ const RecipeCard = ({ recipe }) => {
 RecipeCard.propTypes = {
   recipe: PropTypes.shape({
     name: PropTypes.string,
-    description: PropTypes.string,
-  }),
+    description: PropTypes.string
+  })
 };
 
 export default RecipeCard;

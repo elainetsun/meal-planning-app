@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -9,13 +9,12 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styles from "./ShoppingList.module.scss";
 
-
-function ShoppingList() {
+const ShoppingList = () => {
   const [checked, setChecked] = React.useState([-1]);
   const ingredients = ['2 bananas', '1/2 cup flour', '1 tsp salt', '1 tsp vanilla', '3 eggs'];
   const [currentList, setList] = React.useState(ingredients);
 
-  const handleToggle = (value) => () => {
+  const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -69,7 +68,7 @@ function ShoppingList() {
     </List>
     </>
   );
-}
+};
 
 
 export default ShoppingList;

@@ -16,11 +16,30 @@ const RecipesLibrary = () => {
       id: 2,
       name: 'Pasta',
       description: 'yuuuuum'
+    },
+    {
+      id: 3,
+      name: 'Cookies',
+      description: 'yuuuuuuuuuuuum'
+    },
+    {
+      id: 4,
+      name: 'Peppa Pig',
+      description: 'not yumm'
     }
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [recipes, setRecipes] = useState(defaultRecipes);
+
+  const [search, setSearch] = useState('');
+  const [filterDisplay, setFilterDisplay] = useState(recipes);
+
+  const filteredRecipes = recipes.filter( recipe =>{
+    return recipe.name.toLowerCase().includes(search.toLowerCase());
+  }
+)
+
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -49,8 +68,12 @@ const RecipesLibrary = () => {
         />
       </div>
 
+      <div className={styles.recipeSearchBar}>
+        Search: <input className={styles.recipeSearchBar} type = "text" placeholder = "Search by recipe or tag ..." onChange = {e => setSearch(e.target.value)}></input>
+      </div>
+
       <section className={styles.recipeSection}>
-        {recipes.map(recipe => {
+        {filteredRecipes.map(recipe => {
           return <RecipeCard recipe={recipe} key={recipe.id} />;
         })}
       </section>

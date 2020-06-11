@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -15,7 +15,7 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
     ingredients: '',
   };
 
-  const [recipeState, setRecipe] = React.useState(defaultRecipeState);
+  const [recipeState, setRecipe] = useState(defaultRecipeState);
 
   const handleClose = () => {
     handleDialogClose();

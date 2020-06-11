@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RecipeCard from '../recipe-card/RecipeCard';
 import styles from './RecipesLibrary.module.scss';
 import Button from '@material-ui/core/Button';
@@ -19,29 +19,20 @@ const RecipesLibrary = () => {
     },
   ];
 
-  const [recipesLibraryState, setRecipesLibraryState] = React.useState({
-    isModalOpen: false,
-    recipes: defaultRecipes,
-  });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [recipes, setRecipes] = useState(defaultRecipes);
 
   const openModal = () => {
-    setRecipesLibraryState({ ...recipesLibraryState, isModalOpen: true });
+    setIsModalOpen(true);
   };
 
   const handleDialogClose = () => {
-    setRecipesLibraryState({
-      ...recipesLibraryState,
-      isModalOpen: false,
-    });
+    setIsModalOpen(false);
   };
 
   const handleDialogSumbit = (recipe) => {
-    setRecipesLibraryState((state) => {
-      return {
-        isModalOpen: false,
-        recipes: state.recipes.concat(recipe),
-      };
-    });
+    setIsModalOpen(false);
+    setRecipes(recipes.concat(recipe));
   };
 
   return (
@@ -52,14 +43,14 @@ const RecipesLibrary = () => {
           Add
         </Button>
         <AddRecipeDialog
-          isOpen={recipesLibraryState.isModalOpen}
+          isOpen={isModalOpen}
           handleDialogSumbit={handleDialogSumbit}
           handleDialogClose={handleDialogClose}
         />
       </div>
 
       <section className={styles.recipeSection}>
-        {recipesLibraryState.recipes.map((recipe) => {
+        {recipes.map((recipe) => {
           return (
             <div className={styles.card}>
               <RecipeCard recipe={recipe} key={recipe.id} />

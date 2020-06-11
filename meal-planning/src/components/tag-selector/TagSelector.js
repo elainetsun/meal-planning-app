@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Chip from '@material-ui/core/Chip';
 import styles from './TagSelector.module.scss';
 
@@ -26,7 +26,7 @@ const TagSelector = () => {
     { key: 15, label: 'low sugar' },
     { key: 16, label: 'low carb' },
   ];
-  const [activeIndex, setActiveIndex] = React.useState([]);
+  const [activeIndex, setActiveIndex] = useState([]);
 
   const handleClick = (key) => {
     if (activeIndex.indexOf(key) > -1) {

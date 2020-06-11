@@ -1,21 +1,21 @@
-import React from "react";
-import RecipeCard from "../recipe-card/RecipeCard";
-import styles from "./RecipesLibrary.module.scss";
-import Button from "@material-ui/core/Button";
-import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
-import AddRecipeDialog from "../add-recipe-dialog/AddRecipeDialog";
+import React from 'react';
+import RecipeCard from '../recipe-card/RecipeCard';
+import styles from './RecipesLibrary.module.scss';
+import Button from '@material-ui/core/Button';
+import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
+import AddRecipeDialog from '../add-recipe-dialog/AddRecipeDialog';
 
-function RecipesLibrary() {
+const RecipesLibrary = () => {
   const defaultRecipes = [
     {
       id: 1,
-      name: "Curry",
-      description: "Yum",
+      name: 'Curry',
+      description: 'Yum',
     },
     {
       id: 2,
-      name: "Pasta",
-      description: "yuuuuum",
+      name: 'Pasta',
+      description: 'yuuuuum',
     },
   ];
 
@@ -69,6 +69,6 @@ function RecipesLibrary() {
       </section>
     </>
   );
-}
+};
 
 export default RecipesLibrary;

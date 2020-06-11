@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-function ShoppingList() {
+const ShoppingList = () => {
   return <h3>Shopping List</h3>;
-}
+};
 
 export default ShoppingList;

@@ -4,6 +4,7 @@ import styles from './RecipesLibrary.module.scss';
 import Button from '@material-ui/core/Button';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import AddRecipeDialog from '../add-recipe-dialog/AddRecipeDialog';
+import TextField from '@material-ui/core/TextField';
 
 const RecipesLibrary = () => {
   const defaultRecipes = [
@@ -16,11 +17,29 @@ const RecipesLibrary = () => {
       id: 2,
       name: 'Pasta',
       description: 'yuuuuum'
+    },
+    {
+      id: 3,
+      name: 'Cookies',
+      description: 'yuuuuuuuuuuuum'
+    },
+    {
+      id: 4,
+      name: 'Peppa Pig',
+      description: 'not yumm'
     }
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [recipes, setRecipes] = useState(defaultRecipes);
+
+  const [search, setSearch] = useState('');
+
+  const filteredRecipes = recipes.filter( recipe =>{
+    return recipe.name.toLowerCase().includes(search.toLowerCase());
+  }
+)
+
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -49,8 +68,12 @@ const RecipesLibrary = () => {
         />
       </div>
 
+      <div className={styles.recipeSearchBar}>
+        <TextField fullWidth="true" id="outlined-basic"  variant="outlined" placeholder = "Search by recipe or tag ..." onChange = {e => setSearch(e.target.value)}/>
+      </div>
+
       <section className={styles.recipeSection}>
-        {recipes.map(recipe => {
+        {filteredRecipes.map(recipe => {
           return <RecipeCard recipe={recipe} key={recipe.id} />;
         })}
       </section>

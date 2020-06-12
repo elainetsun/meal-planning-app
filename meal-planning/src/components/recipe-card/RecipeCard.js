@@ -16,13 +16,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
+
 
 
 const RecipeCard = ({ recipe , removeCard}) => {
   const [favorite, setFavorite] = useState(false);
   const [open, setOpen] = useState(false);
-  const [deleteCard, setDeleteCard] = useState(false);
 
   const favoritedColor = favorite ? 'red' : '#0000008a';
 
@@ -30,26 +29,18 @@ const RecipeCard = ({ recipe , removeCard}) => {
     setFavorite(!favorite);
   };
 
-
-  const handleDeleteConfirm = () => {
-    if (removeCard) {
-      removeCard(recipe);
-    }
-  };
-
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleCloseNo = () => {
     setOpen(false);
   };
 
-  const handleCloseYes = () =>{
+  const handleCloseYes = () => {
     setOpen(false);
-    setDeleteCard(true);
-    handleDeleteConfirm();
-  }
+    removeCard(recipe);
+  };
 
   return (
     <>
@@ -86,7 +77,7 @@ const RecipeCard = ({ recipe , removeCard}) => {
       <div>
         <Dialog
           open={open}
-          onClose={handleClose}
+          onClose={handleCloseNo}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
@@ -97,7 +88,7 @@ const RecipeCard = ({ recipe , removeCard}) => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleCloseNo} color="primary">
               No, thanks!
             </Button>
             <Button onClick={handleCloseYes} color="primary" autoFocus>

@@ -4,6 +4,7 @@ import styles from './RecipesLibrary.module.scss';
 import Button from '@material-ui/core/Button';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import AddRecipeDialog from '../add-recipe-dialog/AddRecipeDialog';
+import TextField from '@material-ui/core/TextField';
 
 const RecipesLibrary = () => {
   const defaultRecipes = [
@@ -69,7 +70,7 @@ const RecipesLibrary = () => {
       </div>
 
       <div className={styles.recipeSearchBar}>
-        Search: <input className={styles.recipeSearchBar} type = "text" placeholder = "Search by recipe or tag ..." onChange = {e => setSearch(e.target.value)}></input>
+        <TextField id="outlined-basic"  size="small" variant="outlined" placeholder = "Search by recipe or tag ..." onChange = {e => setSearch(e.target.value)}/>
       </div>
 
       <section className={styles.recipeSection}>

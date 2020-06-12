@@ -37,8 +37,7 @@ const RecipesLibrary = () => {
 
   const filteredRecipes = recipes.filter( recipe =>{
     return recipe.name.toLowerCase().includes(search.toLowerCase());
-  }
-)
+  });
 
 
   const openModal = () => {
@@ -52,6 +51,13 @@ const RecipesLibrary = () => {
   const handleDialogSumbit = recipe => {
     setIsModalOpen(false);
     setRecipes(recipes.concat(recipe));
+  };
+
+  const removeCard = recipe => {
+    const currentIndex = recipes.indexOf(recipe);
+    const newList = [...recipes];
+    newList.splice(currentIndex, 1);
+    setRecipes(newList);
   };
 
   return (
@@ -74,7 +80,7 @@ const RecipesLibrary = () => {
 
       <section className={styles.recipeSection}>
         {filteredRecipes.map(recipe => {
-          return <RecipeCard recipe={recipe} key={recipe.id} />;
+          return <RecipeCard recipe={recipe} removeCard={removeCard} key={recipe.id} />;
         })}
       </section>
     </>

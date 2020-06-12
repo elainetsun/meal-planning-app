@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState }from 'react';
 import MaterialTable from 'material-table';
 import Paper from '@material-ui/core/Paper';
-const IngredientSelector = () => {
-  const [state, setState] = React.useState({
+const IngredientSelector = ({handleIngredientChange}) => {
+  const [state, setState] = useState({
     columns: [
       { title: 'Ingredient', field: 'ingredient' },
-      { title: 'Quantity', field: 'quanitiy', type: 'numeric' }
+      { title: 'Quantity', field: 'quantity', type: 'numeric'}
     ],
-    data: [{ ingredient: 'Carrot', quanitiy: 1 }]
+    data: []
   });
 
   return (
@@ -22,8 +22,8 @@ const IngredientSelector = () => {
         data={state.data}
         localization={{
           body: {
-            editRow: { deleteText: 'Delete this row?' },
-            emptyDataSourceMessage: ''
+            editRow: { deleteText: 'Delete this ingredient?' },
+            emptyDataSourceMessage: 'No ingredients to display'
           },
           header: {
             actions: ''
@@ -32,38 +32,35 @@ const IngredientSelector = () => {
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {
-              setTimeout(() => {
                 resolve();
                 setState(prevState => {
                   const data = [...prevState.data];
                   data.push(newData);
+                  handleIngredientChange(data)
                   return { ...prevState, data };
                 });
-              }, 300);
             }),
           onRowUpdate: (newData, oldData) =>
             new Promise(resolve => {
-              setTimeout(() => {
                 resolve();
                 if (oldData) {
                   setState(prevState => {
                     const data = [...prevState.data];
                     data[data.indexOf(oldData)] = newData;
+                    handleIngredientChange(data)
                     return { ...prevState, data };
-                  });
+                  })
                 }
-              }, 300);
             }),
           onRowDelete: oldData =>
             new Promise(resolve => {
-              setTimeout(() => {
                 resolve();
                 setState(prevState => {
                   const data = [...prevState.data];
                   data.splice(data.indexOf(oldData), 1);
+                  handleIngredientChange(data)
                   return { ...prevState, data };
-                });
-              }, 300);
+                })
             })
         }}
         options={{

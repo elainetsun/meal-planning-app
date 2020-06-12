@@ -16,11 +16,11 @@ const RecipeCard = ({ recipe }) => {
 
   const favoritedColor = favorite ? 'red' : '#0000008a';
 
-  const handleFavoriteClick = e => {
+  const handleFavoriteClick = () => {
     setFavorite(!favorite);
   };
 
-  const handleDeleteClick = e => {
+  const handleDeleteClick = () => {
     const card = document.querySelector(`div[data-recipe-id="${recipe.id}"]`);
 
     if (window.confirm(`Are you sure you want to delete ${recipe.name}?`)) {

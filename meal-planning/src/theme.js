@@ -4,6 +4,11 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   overrides: {
+    MuiIconButton: {
+      root: {
+        padding: 5
+      }
+    },
     MuiTypography: {
       h6: {
         fontSize: 18,
@@ -12,11 +17,12 @@ const theme = createMuiTheme({
     },
     MuiTableCell: {
       root:{
-        padding:"8px 16px 8px 16px"
+        padding: 0,
+        '@media (min-width: 600px)': {
+          padding:"8px 16px 8px 16px"
+        }
       },
-      '@media (min-width: 600px)': {
-        padding:"8px 16px 8px 16px"
-      }
+     
     },
     MuiToolbar: {
       regular:{

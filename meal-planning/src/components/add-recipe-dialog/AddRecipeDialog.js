@@ -11,7 +11,7 @@ import IngredientSelector from '../ingredient-selector/IngredientSelector';
 
 const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
   const defaultRecipeState = {
-    id: Math.random()*100,
+    id: Math.random() * 100,
     name: '',
     description: '',
     ingredients: []
@@ -37,13 +37,13 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
     });
   };
 
-  const handleIngredientChange = newIngredients=> {
-    if(newIngredients.length > 0 ) {
+  const handleIngredientChange = newIngredients => {
+    if (newIngredients.length > 0) {
       const ingredients = [];
       newIngredients.forEach(i => {
         ingredients.push(`${i.quantity} - ${i.ingredient}`);
       });
-      setRecipe({...recipeState, ingredients});
+      setRecipe({ ...recipeState, ingredients });
     }
   };
 
@@ -76,7 +76,9 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
                 fullWidth
               />
             </div>
-            <IngredientSelector handleIngredientChange={handleIngredientChange}/>
+            <IngredientSelector
+              handleIngredientChange={handleIngredientChange}
+            />
             <TagSelector />
           </DialogContent>
           <DialogActions>

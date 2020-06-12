@@ -36,9 +36,11 @@ const RecipeCard = ({ recipe }) => {
           <Typography variant="body2" color="textSecondary" component="p">
             {recipe.description}
           </Typography>
-          <section>{recipe.ingredients.map(i=> {
-            return <div key={i.id}>{i}</div>
-          })}</section>
+          <section>
+            {recipe.ingredients.map(i => {
+              return <div key={i.id}>{i}</div>;
+            })}
+          </section>
         </CardContent>
         <CardActions disableSpacing className={styles.actions}>
           <IconButton

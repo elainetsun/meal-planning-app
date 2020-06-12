@@ -8,12 +8,11 @@ import TextField from '@material-ui/core/TextField';
 import defaultRecipes from './DefaultRecipes';
 
 const RecipesLibrary = () => {
-  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [recipes, setRecipes] = useState(defaultRecipes);
   const [search, setSearch] = useState('');
 
-  const filteredRecipes = recipes.filter( recipe =>{
+  const filteredRecipes = recipes.filter(recipe => {
     return recipe.name.toLowerCase().includes(search.toLowerCase());
   });
 
@@ -45,7 +44,13 @@ const RecipesLibrary = () => {
       </div>
 
       <div className={styles.recipeSearchBar}>
-        <TextField fullWidth="true" id="outlined-basic"  variant="outlined" placeholder = "Search by recipe or tag ..." onChange = {e => setSearch(e.target.value)}/>
+        <TextField
+          fullWidth="true"
+          id="outlined-basic"
+          variant="outlined"
+          placeholder="Search by recipe or tag ..."
+          onChange={e => setSearch(e.target.value)}
+        />
       </div>
 
       <section className={styles.recipeSection}>

@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './IngredientSelector.module.scss';
 import MaterialTable from 'material-table';
+import Paper from '@material-ui/core/Paper';
 const IngredientSelector = () => {
   const [state, setState] = React.useState({
     columns: [
@@ -11,8 +11,12 @@ const IngredientSelector = () => {
   });
 
   return (
-    <div className={styles.table}>
+    <div>
       <MaterialTable
+        components={{
+          // eslint-disable-next-line react/display-name
+          Container: props => <Paper {...props} elevation={0} />
+        }}
         title="Ingredients List"
         columns={state.columns}
         data={state.data}

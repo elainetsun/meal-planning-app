@@ -48,7 +48,7 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
           <DialogContent>
             <TextField
               id="name"
-              label="Name"
+              label="Recipe Name"
               type="text"
               defaultValue={recipeState.name}
               onChange={handleChange}

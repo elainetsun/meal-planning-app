@@ -7,6 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import styles from './AddRecipeDialog.module.scss';
 import TagSelector from '../tag-selector/TagSelector';
+import IngredientSelector from '../ingredient-selector/IngredientSelector';
 
 const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
   const defaultRecipeState = {
@@ -37,6 +38,7 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
   return (
     <div className={styles.dialogContainer}>
       <Dialog
+        className={styles.dialog}
         open={isOpen}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
@@ -46,28 +48,24 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
           <DialogContent>
             <TextField
               id="name"
-              label="Name"
+              label="Recipe Name"
               type="text"
               defaultValue={recipeState.name}
               onChange={handleChange}
               fullWidth
             />
-            <TextField
-              id="description"
-              label="Description"
-              type="text"
-              defaultValue={recipeState.description}
-              onChange={handleChange}
-              fullWidth
-            />
-            <TextField
-              id="ingredients"
-              label="Ingredients"
-              type="text"
-              defaultValue={recipeState.ingredients}
-              onChange={handleChange}
-              fullWidth
-            />
+            <div className={styles.description}>
+              <TextField
+                id="description"
+                label="Description"
+                type="text-area"
+                defaultValue={recipeState.description}
+                onChange={handleChange}
+                fullWidth
+              />
+            </div>
+
+            <IngredientSelector />
             <TagSelector />
           </DialogContent>
           <DialogActions>

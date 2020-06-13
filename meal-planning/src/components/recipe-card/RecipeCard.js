@@ -12,7 +12,7 @@ import styles from './RecipeCard.module.scss';
 import PropTypes from 'prop-types';
 import DeleteRecipeDialog from '../delete-recipe-dialog/DeleteRecipeDialog';
 
-const RecipeCard = ({ recipe , removeCard}) => {
+const RecipeCard = ({ recipe, removeCard }) => {
   const [favorite, setFavorite] = useState(false);
   const [open, setOpen] = useState(false);
   const favoritedColor = favorite ? 'red' : '#0000008a';
@@ -36,7 +36,6 @@ const RecipeCard = ({ recipe , removeCard}) => {
 
   return (
     <>
-    <div>
       <Card data-recipe-id={recipe.id} className={styles.card}>
         <CardHeader title={recipe.name} className={styles.header} />
         <CardContent>
@@ -72,16 +71,15 @@ const RecipeCard = ({ recipe , removeCard}) => {
           </IconButton>
         </CardActions>
       </Card>
-    </div>
 
-    <div>
-      <DeleteRecipeDialog
-        isOpen ={open}
-        handleCardDelete={handleDelete}
-        handleDialogClose={handleDeleteClose}
-        recipe = {recipe}
-      />
-    </div>
+      <div>
+        <DeleteRecipeDialog
+          isOpen={open}
+          handleCardDelete={handleDelete}
+          handleDialogClose={handleDeleteClose}
+          recipe={recipe}
+        />
+      </div>
     </>
   );
 };

@@ -38,7 +38,7 @@ const RecipeCard = ({ recipe }) => {
           </Typography>
           <section>
             {recipe.ingredients.map(i => {
-              return <div key={i.id}>{i}</div>;
+              return <div key={i.id}>{`${i.quantity} - ${i.name}`}</div>;
             })}
           </section>
         </CardContent>

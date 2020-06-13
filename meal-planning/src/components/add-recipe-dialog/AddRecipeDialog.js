@@ -41,7 +41,11 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
     if (newIngredients.length > 0) {
       const ingredients = [];
       newIngredients.forEach(i => {
-        ingredients.push(`${i.quantity} - ${i.ingredient}`);
+        ingredients.push({
+          key: Math.random * 100,
+          name: i.ingredient,
+          quantity: i.quantity
+        });
       });
       setRecipe({ ...recipeState, ingredients });
     }

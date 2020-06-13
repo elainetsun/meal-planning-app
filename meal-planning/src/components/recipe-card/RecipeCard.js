@@ -43,6 +43,13 @@ const RecipeCard = ({ recipe , removeCard}) => {
           <Typography variant="body2" color="textSecondary" component="p">
             {recipe.description}
           </Typography>
+          <div>
+            <ul>
+              {recipe.ingredients.map(i => {
+                return <li key={i.id}>{`${i.quantity} - ${i.name}`}</li>;
+              })}
+            </ul>
+          </div>
         </CardContent>
         <CardActions disableSpacing className={styles.actions}>
           <IconButton

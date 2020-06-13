@@ -45,7 +45,7 @@ const RecipesLibrary = () => {
 
       <div className={styles.recipeSearchBar}>
         <TextField
-          fullWidth="true"
+          fullWidth
           id="outlined-basic"
           variant="outlined"
           placeholder="Search by recipe or tag ..."

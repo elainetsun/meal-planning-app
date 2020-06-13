@@ -11,15 +11,17 @@ import IngredientSelector from '../ingredient-selector/IngredientSelector';
 
 const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
   const defaultRecipeState = {
+    id: Math.random() * 100,
     name: '',
     description: '',
-    ingredients: ''
+    ingredients: []
   };
 
   const [recipeState, setRecipe] = useState(defaultRecipeState);
 
   const handleClose = () => {
     handleDialogClose();
+    setRecipe(defaultRecipeState);
   };
 
   const handleSubmit = event => {
@@ -33,6 +35,20 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
       ...recipeState,
       [event.target.id]: event.target.value
     });
+  };
+
+  const handleIngredientChange = newIngredients => {
+    if (newIngredients.length > 0) {
+      const ingredients = [];
+      newIngredients.forEach(i => {
+        ingredients.push({
+          id: i.ingredient,
+          name: i.ingredient,
+          quantity: i.quantity
+        });
+      });
+      setRecipe({ ...recipeState, ingredients });
+    }
   };
 
   return (
@@ -64,8 +80,9 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
                 fullWidth
               />
             </div>
-
-            <IngredientSelector />
+            <IngredientSelector
+              handleIngredientChange={handleIngredientChange}
+            />
             <TagSelector />
           </DialogContent>
           <DialogActions>

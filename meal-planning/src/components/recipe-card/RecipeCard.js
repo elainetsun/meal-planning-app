@@ -12,7 +12,7 @@ import styles from './RecipeCard.module.scss';
 import PropTypes from 'prop-types';
 import DeleteRecipeDialog from '../delete-recipe-dialog/DeleteRecipeDialog';
 
-const RecipeCard = ({ recipe , removeCard}) => {
+const RecipeCard = ({ recipe , removeCard, handleFavoriteSort , handleUnfavorite}) => {
   const [favorite, setFavorite] = useState(false);
   const [open, setOpen] = useState(false);
   const favoritedColor = favorite ? 'red' : '#0000008a';
@@ -31,8 +31,15 @@ const RecipeCard = ({ recipe , removeCard}) => {
   };
 
   const handleFavoriteClick = () => {
-    setFavorite(!favorite);
+    if (!favorite) {
+      setFavorite(true);
+      handleFavoriteSort(recipe);
+    } else {
+      setFavorite(false);
+      handleUnfavorite(recipe);
+    }
   };
+
 
   return (
     <>

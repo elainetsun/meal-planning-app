@@ -42,7 +42,7 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
       const ingredients = [];
       newIngredients.forEach(i => {
         ingredients.push({
-          key: Math.random * 100,
+          id: i.ingredient,
           name: i.ingredient,
           quantity: i.quantity
         });

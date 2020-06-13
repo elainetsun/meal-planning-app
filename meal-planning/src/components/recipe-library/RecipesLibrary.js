@@ -3,7 +3,7 @@ import RecipeCard from '../recipe-card/RecipeCard';
 import styles from './RecipesLibrary.module.scss';
 import Button from '@material-ui/core/Button';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
-import AddRecipeDialog from '../add-recipe-dialog/AddRecipeDialog';
+import RecipeDialog from '../recipe-dialog/RecipeDialog';
 import TextField from '@material-ui/core/TextField';
 import defaultRecipes from './DefaultRecipes';
 
@@ -30,7 +30,9 @@ const RecipesLibrary = () => {
   };
 
   const removeCard = recipe => {
-    const currentIndex = recipes.findIndex(currentRecipe => recipe === currentRecipe);
+    const currentIndex = recipes.findIndex(
+      currentRecipe => recipe === currentRecipe
+    );
     const newList = [...recipes];
     newList.splice(currentIndex, 1);
     setRecipes(newList);
@@ -43,7 +45,7 @@ const RecipesLibrary = () => {
         <Button size="small" onClick={openModal} endIcon={<AddCircleOutline />}>
           Add
         </Button>
-        <AddRecipeDialog
+        <RecipeDialog
           isOpen={isModalOpen}
           handleDialogSumbit={handleDialogSumbit}
           handleDialogClose={handleDialogClose}
@@ -62,7 +64,13 @@ const RecipesLibrary = () => {
 
       <section className={styles.recipeSection}>
         {filteredRecipes.map(recipe => {
-          return <RecipeCard recipe={recipe} removeCard={removeCard} key={recipe.id} />;
+          return (
+            <RecipeCard
+              recipe={recipe}
+              removeCard={removeCard}
+              key={recipe.id}
+            />
+          );
         })}
       </section>
     </>

@@ -32,7 +32,6 @@ const RecipesLibrary = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [recipes, setRecipes] = useState(defaultRecipes);
-
   const [search, setSearch] = useState('');
 
   const filteredRecipes = recipes.filter( recipe =>{

@@ -10,40 +10,33 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import styles from './RecipeCard.module.scss';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
-
+import DeleteRecipeDialog from '../delete-recipe-dialog/DeleteRecipeDialog';
 
 const RecipeCard = ({ recipe , removeCard}) => {
   const [favorite, setFavorite] = useState(false);
   const [open, setOpen] = useState(false);
-
   const favoritedColor = favorite ? 'red' : '#0000008a';
+
+  const handleDeleteOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDeleteClose = () => {
+    setOpen(false);
+  };
+
+  const handleDelete = () => {
+    setOpen(false);
+    removeCard(recipe);
+  };
 
   const handleFavoriteClick = () => {
     setFavorite(!favorite);
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleCloseNo = () => {
-    setOpen(false);
-  };
-
-  const handleCloseYes = () => {
-    setOpen(false);
-    removeCard(recipe);
-  };
-
   return (
     <>
+    <div>
       <Card data-recipe-id={recipe.id} className={styles.card}>
         <CardHeader title={recipe.name} className={styles.header} />
         <CardContent>
@@ -63,7 +56,7 @@ const RecipeCard = ({ recipe , removeCard}) => {
           <IconButton
             aria-label="delete recipe"
             className={styles.deleteIcon}
-            onClick={handleClickOpen}
+            onClick={handleDeleteOpen}
           >
             <DeleteIcon />
           </IconButton>
@@ -72,31 +65,16 @@ const RecipeCard = ({ recipe , removeCard}) => {
           </IconButton>
         </CardActions>
       </Card>
+    </div>
 
-
-      <div>
-        <Dialog
-          open={open}
-          onClose={handleCloseNo}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Delete the recipe for " + recipe.name +"?"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              The recipe will be permanently deleted.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseNo} color="primary">
-              No, thanks!
-            </Button>
-            <Button onClick={handleCloseYes} color="primary" autoFocus>
-              Yes, please!
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+    <div>
+      <DeleteRecipeDialog
+        isOpen ={open}
+        handleCardDelete={handleDelete}
+        handleDialogClose={handleDeleteClose}
+        recipe = {recipe}
+      />
+    </div>
     </>
   );
 };

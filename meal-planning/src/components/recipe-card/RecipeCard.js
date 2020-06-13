@@ -10,26 +10,33 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import styles from './RecipeCard.module.scss';
 import PropTypes from 'prop-types';
+import DeleteRecipeDialog from '../delete-recipe-dialog/DeleteRecipeDialog';
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard = ({ recipe , removeCard}) => {
   const [favorite, setFavorite] = useState(false);
-
+  const [open, setOpen] = useState(false);
   const favoritedColor = favorite ? 'red' : '#0000008a';
+
+  const handleDeleteOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDeleteClose = () => {
+    setOpen(false);
+  };
+
+  const handleDelete = () => {
+    setOpen(false);
+    removeCard(recipe);
+  };
 
   const handleFavoriteClick = () => {
     setFavorite(!favorite);
   };
 
-  const handleDeleteClick = () => {
-    const card = document.querySelector(`div[data-recipe-id="${recipe.id}"]`);
-
-    if (window.confirm(`Are you sure you want to delete ${recipe.name}?`)) {
-      card.remove();
-    }
-  };
-
   return (
     <>
+    <div>
       <Card data-recipe-id={recipe.id} className={styles.card}>
         <CardHeader title={recipe.name} className={styles.header} />
         <CardContent>
@@ -49,7 +56,7 @@ const RecipeCard = ({ recipe }) => {
           <IconButton
             aria-label="delete recipe"
             className={styles.deleteIcon}
-            onClick={handleDeleteClick}
+            onClick={handleDeleteOpen}
           >
             <DeleteIcon />
           </IconButton>
@@ -58,6 +65,16 @@ const RecipeCard = ({ recipe }) => {
           </IconButton>
         </CardActions>
       </Card>
+    </div>
+
+    <div>
+      <DeleteRecipeDialog
+        isOpen ={open}
+        handleCardDelete={handleDelete}
+        handleDialogClose={handleDeleteClose}
+        recipe = {recipe}
+      />
+    </div>
     </>
   );
 };

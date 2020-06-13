@@ -38,7 +38,6 @@ const RecipesLibrary = () => {
     return recipe.name.toLowerCase().includes(search.toLowerCase());
   });
 
-
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -53,7 +52,7 @@ const RecipesLibrary = () => {
   };
 
   const removeCard = recipe => {
-    const currentIndex = recipes.indexOf(recipe);
+    const currentIndex = recipes.findIndex(currentRecipe => recipe === currentRecipe);
     const newList = [...recipes];
     newList.splice(currentIndex, 1);
     setRecipes(newList);

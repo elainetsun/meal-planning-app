@@ -8,8 +8,13 @@ import TextField from '@material-ui/core/TextField';
 import defaultRecipes from './DefaultRecipes';
 
 const RecipesLibrary = () => {
+<<<<<<< HEAD
   const [recipeDialogOpen, setRecipeDialogOpen] = useState(false);
   const [recipes, setRecipes] = useState(defaultRecipes);
+=======
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [recipes, setRecipes] = useState(defaultRecipes.sort(x => {return x.favorite ? -1 : 1;}));
+>>>>>>> 34babe5cafbd62f550c84178abe61ae9994effcf
   const [search, setSearch] = useState('');
 
   const filteredRecipes = recipes.filter(recipe => {
@@ -31,6 +36,12 @@ const RecipesLibrary = () => {
     );
     const newList = [...recipes];
     newList.splice(currentIndex, 1);
+    setRecipes(newList);
+  };
+
+  const handleFavoriteSort = () => {
+    const newList = [...recipes];
+    newList.sort((x, y) => {return (x.favorite === y.favorite)? 0 : x.favorite? -1 : 1;});
     setRecipes(newList);
   };
 
@@ -64,13 +75,12 @@ const RecipesLibrary = () => {
 
       <section className={styles.recipeSection}>
         {filteredRecipes.map(recipe => {
-          return (
-            <RecipeCard
-              recipe={recipe}
-              removeCard={removeCard}
-              key={recipe.id}
-            />
-          );
+          return <RecipeCard 
+            recipe={recipe} 
+            removeCard={removeCard} 
+            handleFavoriteSort= {handleFavoriteSort} 
+            key={recipe.id} 
+          />;
         })}
       </section>
     </>

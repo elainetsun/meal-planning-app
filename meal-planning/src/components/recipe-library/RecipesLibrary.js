@@ -9,7 +9,7 @@ import defaultRecipes from './DefaultRecipes';
 
 const RecipesLibrary = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [recipes, setRecipes] = useState(defaultRecipes);
+  const [recipes, setRecipes] = useState(defaultRecipes.sort(x => {return x.favorite ? -1 : 1;}));
   const [search, setSearch] = useState('');
 
   const filteredRecipes = recipes.filter(recipe => {
@@ -38,7 +38,7 @@ const RecipesLibrary = () => {
 
   const handleFavoriteSort = () => {
     const newList = [...recipes];
-    newList.sort(function(x, y) {return (x.favorite === y.favorite)? 0 : x.favorite? -1 : 1;});
+    newList.sort((x, y) => {return (x.favorite === y.favorite)? 0 : x.favorite? -1 : 1;});
     setRecipes(newList);
   };
 

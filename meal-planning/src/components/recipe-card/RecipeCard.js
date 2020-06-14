@@ -30,8 +30,7 @@ const RecipeCard = ({ recipe , removeCard, handleFavoriteSort}) => {
   };
 
   const handleFavoriteClick = () => {
-    const isFav = !recipe.favorite;
-    recipe.favorite = isFav;
+    recipe.favorite = !recipe.favorite;
     handleFavoriteSort();
   };
 

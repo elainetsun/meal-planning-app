@@ -36,19 +36,10 @@ const RecipesLibrary = () => {
     setRecipes(newList);
   };
 
-  const handleFavoriteSort = recipe => {
-    const currentIndex = recipes.findIndex(currentRecipe => recipe === currentRecipe);
+  const handleFavoriteSort = () => {
     const newList = [...recipes];
-    newList.splice(currentIndex, 1);
-    newList.splice(0,0,recipe);
+    newList.sort(function(x, y) {return (x.favorite === y.favorite)? 0 : x.favorite? -1 : 1;});
     setRecipes(newList);
-  };
-
-  const handleUnfavorite = recipe => {
-    const currentIndex = recipes.findIndex(currentRecipe => recipe === currentRecipe);
-    const newList = [...recipes];
-    newList.splice(currentIndex, 1);
-    setRecipes(newList.concat(recipe));
   };
 
   return (
@@ -77,7 +68,12 @@ const RecipesLibrary = () => {
 
       <section className={styles.recipeSection}>
         {filteredRecipes.map(recipe => {
-          return <RecipeCard recipe={recipe} removeCard={removeCard} handleFavoriteSort= {handleFavoriteSort} handleUnfavorite = {handleUnfavorite} key={recipe.id} />;
+          return <RecipeCard 
+            recipe={recipe} 
+            removeCard={removeCard} 
+            handleFavoriteSort= {handleFavoriteSort} 
+            key={recipe.id} 
+          />;
         })}
       </section>
     </>

@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import defaultRecipes from './DefaultRecipes';
 
 const RecipesLibrary = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [recipeDialogOpen, setRecipeDialogOpen] = useState(false);
   const [recipes, setRecipes] = useState(defaultRecipes);
   const [search, setSearch] = useState('');
 
@@ -16,16 +16,12 @@ const RecipesLibrary = () => {
     return recipe.name.toLowerCase().includes(search.toLowerCase());
   });
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const recipeDialogClose = () => {
+    setRecipeDialogOpen(false);
   };
 
-  const handleDialogClose = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleDialogSumbit = recipe => {
-    setIsModalOpen(false);
+  const recipeDialogSubmit = recipe => {
+    setRecipeDialogOpen(false);
     setRecipes(recipes.concat(recipe));
   };
 
@@ -42,13 +38,17 @@ const RecipesLibrary = () => {
     <>
       <div className={styles.recipesHeader}>
         <h3>Recipes Library</h3>
-        <Button size="small" onClick={openModal} endIcon={<AddCircleOutline />}>
+        <Button
+          size="small"
+          onClick={() => setRecipeDialogOpen(true)}
+          endIcon={<AddCircleOutline />}
+        >
           Add
         </Button>
         <RecipeDialog
-          isOpen={isModalOpen}
-          handleDialogSumbit={handleDialogSumbit}
-          handleDialogClose={handleDialogClose}
+          isOpen={recipeDialogOpen}
+          recipeDialogClose={recipeDialogClose}
+          recipeDialogSubmit={recipeDialogSubmit}
         />
       </div>
 

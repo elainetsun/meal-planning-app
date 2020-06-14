@@ -9,7 +9,7 @@ import defaultRecipes from './DefaultRecipes';
 
 const RecipesLibrary = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [recipes, setRecipes] = useState(defaultRecipes);
+  const [recipes, setRecipes] = useState(defaultRecipes.sort(x => {return x.favorite ? -1 : 1;}));
   const [search, setSearch] = useState('');
 
   const filteredRecipes = recipes.filter(recipe => {
@@ -33,6 +33,12 @@ const RecipesLibrary = () => {
     const currentIndex = recipes.findIndex(currentRecipe => recipe === currentRecipe);
     const newList = [...recipes];
     newList.splice(currentIndex, 1);
+    setRecipes(newList);
+  };
+
+  const handleFavoriteSort = () => {
+    const newList = [...recipes];
+    newList.sort((x, y) => {return (x.favorite === y.favorite)? 0 : x.favorite? -1 : 1;});
     setRecipes(newList);
   };
 
@@ -62,7 +68,12 @@ const RecipesLibrary = () => {
 
       <section className={styles.recipeSection}>
         {filteredRecipes.map(recipe => {
-          return <RecipeCard recipe={recipe} removeCard={removeCard} key={recipe.id} />;
+          return <RecipeCard 
+            recipe={recipe} 
+            removeCard={removeCard} 
+            handleFavoriteSort= {handleFavoriteSort} 
+            key={recipe.id} 
+          />;
         })}
       </section>
     </>

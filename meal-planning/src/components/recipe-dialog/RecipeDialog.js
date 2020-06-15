@@ -9,12 +9,17 @@ import styles from './RecipeDialog.module.scss';
 import TagSelector from '../tag-selector/TagSelector';
 import IngredientSelector from '../ingredient-selector/IngredientSelector';
 
-const RecipeDialog = ({ isOpen, recipeDialogClose, recipeDialogSubmit }) => {
+const RecipeDialog = ({
+  isOpen,
+  recipeDialogClose,
+  recipeDialogSubmit,
+  recipe
+}) => {
   const defaultRecipeState = {
-    id: Math.random() * 100,
-    name: '',
-    description: '',
-    ingredients: []
+    id: recipe ? recipe.id : Math.random() * 100,
+    name: recipe ? recipe.name : '',
+    description: recipe ? recipe.description : '',
+    ingredients: recipe ? recipe.ingredients : []
   };
 
   const [recipeState, setRecipe] = useState(defaultRecipeState);
@@ -28,6 +33,7 @@ const RecipeDialog = ({ isOpen, recipeDialogClose, recipeDialogSubmit }) => {
     event.preventDefault();
     recipeDialogSubmit(recipeState);
     setRecipe(defaultRecipeState);
+    recipeDialogClose();
   };
 
   const handleChange = event => {

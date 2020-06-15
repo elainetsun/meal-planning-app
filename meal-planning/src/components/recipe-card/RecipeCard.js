@@ -10,22 +10,32 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import styles from './RecipeCard.module.scss';
 import PropTypes from 'prop-types';
+import RecipeDialog from '../recipe-dialog/RecipeDialog';
 import DeleteRecipeDialog from '../delete-recipe-dialog/DeleteRecipeDialog';
 
-const RecipeCard = ({ recipe, removeCard, handleFavoriteSort, editCard }) => {
-  const [open, setOpen] = useState(false);
+const RecipeCard = ({ recipe, removeCard, handleFavoriteSort, editRecipe }) => {
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   const favoritedColor = recipe.favorite ? 'red' : '#0000008a';
 
   const handleDeleteOpen = () => {
-    setOpen(true);
+    setDeleteDialogOpen(true);
   };
 
   const handleDeleteClose = () => {
-    setOpen(false);
+    setDeleteDialogOpen(false);
+  };
+
+  const handleEditOpen = () => {
+    setEditDialogOpen(true);
+  };
+
+  const handleEditClose = () => {
+    setEditDialogOpen(false);
   };
 
   const handleDelete = () => {
-    setOpen(false);
+    setDeleteDialogOpen(false);
     removeCard(recipe);
   };
 
@@ -66,14 +76,21 @@ const RecipeCard = ({ recipe, removeCard, handleFavoriteSort, editCard }) => {
           >
             <DeleteIcon />
           </IconButton>
-          <IconButton aria-label="edit recipe" onClick={editCard}>
+          <IconButton aria-label="edit recipe" onClick={handleEditOpen}>
             <EditIcon />
           </IconButton>
         </CardActions>
       </Card>
 
+      <RecipeDialog
+        isOpen={editDialogOpen}
+        recipeDialogClose={handleEditClose}
+        recipeDialogSubmit={editRecipe}
+        recipe={recipe}
+      />
+
       <DeleteRecipeDialog
-        isOpen={open}
+        isOpen={deleteDialogOpen}
         handleCardDelete={handleDelete}
         handleDialogClose={handleDeleteClose}
         recipe={recipe}

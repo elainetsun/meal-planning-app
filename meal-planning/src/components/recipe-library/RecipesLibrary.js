@@ -24,9 +24,17 @@ const RecipesLibrary = () => {
     setRecipeDialogOpen(false);
   };
 
-  const recipeDialogSubmit = recipe => {
-    setRecipeDialogOpen(false);
+  const recipeDialogAddSubmit = recipe => {
     setRecipes(recipes.concat(recipe));
+  };
+
+  const recipeDialogEditSubmit = editedRecipe => {
+    const originalRecipeIndex = recipes.findIndex(
+      recipe => recipe.id === editedRecipe.id
+    );
+    const newRecipes = [...recipes];
+    newRecipes.splice(originalRecipeIndex, 1, editedRecipe);
+    setRecipes(newRecipes);
   };
 
   const removeCard = recipe => {
@@ -60,7 +68,7 @@ const RecipesLibrary = () => {
         <RecipeDialog
           isOpen={recipeDialogOpen}
           recipeDialogClose={recipeDialogClose}
-          recipeDialogSubmit={recipeDialogSubmit}
+          recipeDialogSubmit={recipeDialogAddSubmit}
         />
       </div>
 
@@ -79,6 +87,7 @@ const RecipesLibrary = () => {
           return (
             <RecipeCard
               recipe={recipe}
+              editRecipe={recipeDialogEditSubmit}
               removeCard={removeCard}
               handleFavoriteSort={handleFavoriteSort}
               key={recipe.id}

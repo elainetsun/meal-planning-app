@@ -66,6 +66,8 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
               id="name"
               label="Recipe Name"
               type="text"
+              error={recipeState.name === ''}
+              helperText={recipeState.name === '' ? 'Required*' : ''}
               defaultValue={recipeState.name}
               onChange={handleChange}
               fullWidth
@@ -75,6 +77,8 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
                 id="description"
                 label="Description"
                 type="text-area"
+                error={recipeState.description === ''}
+                helperText={recipeState.description === '' ? 'Required*' : ''}
                 defaultValue={recipeState.description}
                 onChange={handleChange}
                 fullWidth
@@ -89,7 +93,7 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>
-            <Button type="submit" value="Submit" color="primary">
+            <Button type="submit" value="Submit" color="primary" disabled = {!(recipeState.name && recipeState.description)}>
               Submit
             </Button>
           </DialogActions>

@@ -32,7 +32,6 @@ const RecipeDialog = ({
   const handleSubmit = event => {
     event.preventDefault();
     recipeDialogSubmit(recipeState);
-    setRecipe(defaultRecipeState);
     recipeDialogClose();
   };
 

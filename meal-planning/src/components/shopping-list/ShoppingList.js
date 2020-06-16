@@ -39,7 +39,10 @@ const ShoppingList = () => {
                   inputProps={{ 'aria-labelledby': checkLabelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={checkLabelId} primary={ingredient.name} />
+              <ListItemText
+                id={checkLabelId}
+                primary={`${ingredient.quantity} - ${ingredient.name}`}
+              />
               <ListItemSecondaryAction
                 key={ingredient.id}
                 value={ingredient}

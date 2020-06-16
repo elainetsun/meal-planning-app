@@ -48,7 +48,7 @@ const RecipeDialog = ({
       newIngredients.forEach(i => {
         ingredients.push({
           id: i.ingredient,
-          name: i.ingredient,
+          name: i.name,
           quantity: i.quantity
         });
       });
@@ -87,6 +87,7 @@ const RecipeDialog = ({
             </div>
             <IngredientSelector
               handleIngredientChange={handleIngredientChange}
+              ingredients={recipeState.ingredients}
             />
             <TagSelector />
           </DialogContent>

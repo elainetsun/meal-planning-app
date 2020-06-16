@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import Paper from '@material-ui/core/Paper';
-const IngredientSelector = ({ handleIngredientChange }) => {
+const IngredientSelector = ({ handleIngredientChange, ingredients }) => {
   const [state, setState] = useState({
     columns: [
-      { title: 'Ingredient', field: 'ingredient' },
+      { title: 'Ingredient', field: 'name' },
       { title: 'Quantity', field: 'quantity', type: 'numeric' }
     ],
     data: []
   });
+
+  useEffect(() => {
+    ingredients
+      ? setState({ ...state, data: ingredients })
+      : console.log('no ingredients');
+  }, [ingredients]);
 
   return (
     <div>

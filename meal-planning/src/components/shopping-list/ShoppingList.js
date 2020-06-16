@@ -14,10 +14,8 @@ const ShoppingList = () => {
   const ingredients = RecipeService.getIngredients();
   const [currentList, setList] = React.useState(ingredients);
 
-  const handleDelete = value => () => {
-    const currentIndex = currentList.indexOf(value);
-    const newList = [...currentList];
-    newList.splice(currentIndex, 1);
+  const handleDelete = id => () => {
+    const newList = currentList.filter(i => i.id != id);
     setList(newList);
   };
 

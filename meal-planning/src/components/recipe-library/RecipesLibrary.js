@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RecipeCard from '../recipe-card/RecipeCard';
 import styles from './RecipesLibrary.module.scss';
 import Button from '@material-ui/core/Button';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import AddRecipeDialog from '../add-recipe-dialog/AddRecipeDialog';
 import TextField from '@material-ui/core/TextField';
-import defaultRecipes from './DefaultRecipes';
+import RecipeService from '../../services/RecipeService';
 
 const RecipesLibrary = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [recipes, setRecipes] = useState(defaultRecipes.sort(x => {return x.favorite ? -1 : 1;}));
+  useEffect(() => {
+    if (recipes) {
+      RecipeService.saveRecipes(recipes);
+    }
+  });
+
   const [search, setSearch] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [recipes, setRecipes] = useState(
+    RecipeService.getRecipes().sort(x => {
+      return x.favorite ? -1 : 1;
+    })
+  );
 
   const filteredRecipes = recipes.filter(recipe => {
     return recipe.name.toLowerCase().includes(search.toLowerCase());
@@ -30,7 +40,9 @@ const RecipesLibrary = () => {
   };
 
   const removeCard = recipe => {
-    const currentIndex = recipes.findIndex(currentRecipe => recipe === currentRecipe);
+    const currentIndex = recipes.findIndex(
+      currentRecipe => recipe === currentRecipe
+    );
     const newList = [...recipes];
     newList.splice(currentIndex, 1);
     setRecipes(newList);
@@ -38,7 +50,9 @@ const RecipesLibrary = () => {
 
   const handleFavoriteSort = () => {
     const newList = [...recipes];
-    newList.sort((x, y) => {return (x.favorite === y.favorite)? 0 : x.favorite? -1 : 1;});
+    newList.sort((x, y) => {
+      return x.favorite === y.favorite ? 0 : x.favorite ? -1 : 1;
+    });
     setRecipes(newList);
   };
 
@@ -68,12 +82,14 @@ const RecipesLibrary = () => {
 
       <section className={styles.recipeSection}>
         {filteredRecipes.map(recipe => {
-          return <RecipeCard 
-            recipe={recipe} 
-            removeCard={removeCard} 
-            handleFavoriteSort= {handleFavoriteSort} 
-            key={recipe.id} 
-          />;
+          return (
+            <RecipeCard
+              recipe={recipe}
+              removeCard={removeCard}
+              handleFavoriteSort={handleFavoriteSort}
+              key={recipe.id}
+            />
+          );
         })}
       </section>
     </>

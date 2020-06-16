@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -8,11 +8,15 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styles from "./ShoppingList.module.scss";
+import Button from '@material-ui/core/Button';
+import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
+import AddIngredientDialog from "../add-ingredient-dialog/AddIngredientDialog";
+import defaultIngredients from './DefaultIngredients';
 
 const ShoppingList = () => {
-  const [checked, setChecked] = React.useState([-1]);
-  const ingredients = ['2 bananas', '1/2 cup flour', '1 tsp salt', '1 tsp vanilla', '3 eggs'];
-  const [currentList, setList] = React.useState(ingredients);
+  const [checked, setChecked] = useState([-1]);
+  const [currentList, setList] = useState(defaultIngredients);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
@@ -27,6 +31,19 @@ const ShoppingList = () => {
     setChecked(newChecked);
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setIsModalOpen(false);
+  };
+  
+  const handleDialogSubmit = newIngredients => {
+    setIsModalOpen(false);
+    setList(currentList.concat(newIngredients));
+  };
+
   const handleDelete = (value) => () => {
     const currentIndex = currentList.indexOf(value);
     const newList = [...currentList];
@@ -38,6 +55,14 @@ const ShoppingList = () => {
     <>
     <div className={styles.header}>
       <h3>Shopping List</h3>
+      <Button size="small" onClick = {openModal} endIcon={<AddCircleOutline />}>
+          Add
+      </Button>
+      <AddIngredientDialog
+          isOpen={isModalOpen}
+          handleDialogSubmit={handleDialogSubmit}
+          handleDialogClose={handleDialogClose}
+        />
     </div>
 
     <List className={styles.root}>
@@ -56,7 +81,7 @@ const ShoppingList = () => {
                 inputProps={{ 'aria-labelledby': checkLabelId }}
               />
             </ListItemIcon>
-            <ListItemText id={checkLabelId} primary={value} />
+            <ListItemText id={checkLabelId} primary={value.quantity + " " + value.name} />
             <ListItemSecondaryAction key={currentList.indexOf(value)} value={value} onClick = {handleDelete(value)}>
               <IconButton edge="end" aria-label="delete">
                 <DeleteIcon />

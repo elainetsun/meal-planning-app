@@ -38,6 +38,7 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
   };
 
   const handleIngredientChange = newIngredients => {
+    
     if (newIngredients.length > 0) {
       const ingredients = [];
       newIngredients.forEach(i => {
@@ -47,6 +48,9 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
           quantity: i.quantity
         });
       });
+      setRecipe({ ...recipeState, ingredients });
+    } else{
+      const ingredients = [];
       setRecipe({ ...recipeState, ingredients });
     }
   };

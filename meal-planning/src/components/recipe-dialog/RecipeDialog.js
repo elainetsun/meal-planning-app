@@ -38,8 +38,8 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
   };
 
   const handleIngredientChange = newIngredients => {
+    const ingredients = [];
     if (newIngredients.length > 0) {
-      const ingredients = [];
       newIngredients.forEach(i => {
         ingredients.push({
           id: i.name, //temporarily setting the ID of newly created / edited ingredients to their name to avoid key error
@@ -47,8 +47,8 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
           quantity: i.quantity
         });
       });
-      setCurrentRecipe({ ...currentRecipe, ingredients });
     }
+    setCurrentRecipe({ ...currentRecipe, ingredients });
   };
 
   return (

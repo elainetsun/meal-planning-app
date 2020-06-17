@@ -8,12 +8,6 @@ import TextField from '@material-ui/core/TextField';
 import RecipeService from '../../services/RecipeService';
 
 const RecipesLibrary = () => {
-  useEffect(() => {
-    if (recipes) {
-      RecipeService.saveRecipes(recipes);
-    }
-  });
-
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [recipes, setRecipes] = useState(
@@ -21,6 +15,12 @@ const RecipesLibrary = () => {
       return x.favorite ? -1 : 1;
     })
   );
+
+  useEffect(() => {
+    if (recipes.length) {
+      RecipeService.saveRecipes(recipes);
+    }
+  }, [recipes]);
 
   const filteredRecipes = recipes.filter(recipe => {
     return recipe.name.toLowerCase().includes(search.toLowerCase());

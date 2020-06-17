@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RecipeCard from '../recipe-card/RecipeCard';
 import styles from './RecipesLibrary.module.scss';
 import Button from '@material-ui/core/Button';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import AddRecipeDialog from '../add-recipe-dialog/AddRecipeDialog';
 import TextField from '@material-ui/core/TextField';
-import defaultRecipes from './DefaultRecipes';
+import RecipeService from '../../services/RecipeService';
 
 const RecipesLibrary = () => {
+  const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [recipes, setRecipes] = useState(
-    defaultRecipes.sort(x => {
+    RecipeService.getRecipes().sort(x => {
       return x.favorite ? -1 : 1;
     })
   );
-  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    if (recipes.length) {
+      RecipeService.saveRecipes(recipes);
+    }
+  }, [recipes]);
 
   const filteredRecipes = recipes.filter(recipe => {
     return recipe.name.toLowerCase().includes(search.toLowerCase());

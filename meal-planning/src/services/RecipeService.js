@@ -52,8 +52,4 @@ const getIngredients = () => {
   return ingredients;
 };
 
-module.exports = {
-  getRecipes: getRecipes,
-  saveRecipes: saveRecipes,
-  getIngredients: getIngredients
-};
+export default { getRecipes, saveRecipes, getIngredients };

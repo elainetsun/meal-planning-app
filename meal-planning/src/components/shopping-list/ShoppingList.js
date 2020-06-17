@@ -10,7 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import styles from './ShoppingList.module.scss';
 import Button from '@material-ui/core/Button';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
-import AddIngredientDialog from '../add-ingredient-dialog/AddIngredientDialog';
+import RecipeDialog from '../recipe-dialog/RecipeDialog';
 import RecipeService from '../../services/RecipeService';
 
 const ShoppingList = () => {
@@ -42,7 +42,7 @@ const ShoppingList = () => {
         <Button size="small" onClick={openModal} endIcon={<AddCircleOutline />}>
           Add
         </Button>
-        <AddIngredientDialog
+        <RecipeDialog
           isOpen={isModalOpen}
           handleDialogSubmit={handleDialogSubmit}
           handleDialogClose={handleDialogClose}

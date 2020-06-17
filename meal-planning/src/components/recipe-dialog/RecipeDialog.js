@@ -47,7 +47,7 @@ const RecipeDialog = ({
       const ingredients = [];
       newIngredients.forEach(i => {
         ingredients.push({
-          id: i.ingredient,
+          id: i.name, //temporarily setting the ID of newly created / edited ingredients to their name to avoid key a
           name: i.name,
           quantity: i.quantity
         });
@@ -99,7 +99,12 @@ const RecipeDialog = ({
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>
-            <Button type="submit" value="Submit" color="primary" disabled = {!(recipeState.name && recipeState.description)}>
+            <Button
+              type="submit"
+              value="Submit"
+              color="primary"
+              disabled={!(recipeState.name && recipeState.description)}
+            >
               Submit
             </Button>
           </DialogActions>

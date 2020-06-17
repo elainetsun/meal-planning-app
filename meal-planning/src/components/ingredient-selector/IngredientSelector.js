@@ -11,9 +11,9 @@ const IngredientSelector = ({ handleIngredientChange, ingredients }) => {
   });
 
   useEffect(() => {
-    ingredients
-      ? setState({ ...state, data: ingredients })
-      : console.log('no ingredients');
+    if (ingredients) {
+      setState(state => ({ ...state, data: ingredients }));
+    }
   }, [ingredients]);
 
   return (

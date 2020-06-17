@@ -55,7 +55,7 @@ const RecipeCard = ({ recipe, removeCard, handleFavoriteSort, editRecipe }) => {
           <div>
             <ul>
               {recipe.ingredients.map(i => {
-                return <li key={i.id}>{`${i.quantity} - ${i.name}`}</li>;
+                return <li key={`${i.name}`}>{`${i.quantity} - ${i.name}`}</li>;
               })}
             </ul>
           </div>

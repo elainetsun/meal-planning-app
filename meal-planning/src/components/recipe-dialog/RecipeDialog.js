@@ -42,7 +42,7 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
       const ingredients = [];
       newIngredients.forEach(i => {
         ingredients.push({
-          id: i.name, //temporarily setting the ID of newly created / edited ingredients to their name to avoid key a
+          id: i.name, //temporarily setting the ID of newly created / edited ingredients to their name to avoid key error
           name: i.name,
           quantity: i.quantity
         });

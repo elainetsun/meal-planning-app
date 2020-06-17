@@ -38,9 +38,8 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
   };
 
   const handleIngredientChange = newIngredients => {
-    
+    const ingredients = [];    
     if (newIngredients.length > 0) {
-      const ingredients = [];
       newIngredients.forEach(i => {
         ingredients.push({
           id: i.ingredient,
@@ -49,8 +48,7 @@ const AddRecipeDialog = ({ isOpen, handleDialogClose, handleDialogSumbit }) => {
         });
       });
       setRecipe({ ...recipeState, ingredients });
-    } else{
-      const ingredients = [];
+    } else {
       setRecipe({ ...recipeState, ingredients });
     }
   };

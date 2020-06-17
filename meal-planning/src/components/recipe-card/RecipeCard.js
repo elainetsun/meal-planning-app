@@ -13,35 +13,40 @@ import PropTypes from 'prop-types';
 import RecipeDialog from '../recipe-dialog/RecipeDialog';
 import DeleteRecipeDialog from '../delete-recipe-dialog/DeleteRecipeDialog';
 
-const RecipeCard = ({ recipe, removeCard, handleFavoriteSort, editRecipe }) => {
+const RecipeCard = ({
+  recipe,
+  onRecipeDelete,
+  onFavoriteSort,
+  onRecipeEdit
+}) => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [editRecipeDialogOpen, setEditRecipeDialogOpen] = useState(false);
   const favoritedColor = recipe.favorite ? 'red' : '#0000008a';
 
-  const handleDeleteOpen = () => {
+  const handleDeleteDialogOpen = () => {
     setDeleteDialogOpen(true);
   };
 
-  const handleDeleteClose = () => {
+  const handleDeleteDialogClose = () => {
     setDeleteDialogOpen(false);
   };
 
-  const handleEditOpen = () => {
-    setEditDialogOpen(true);
+  const handleEditRecipeDialogOpen = () => {
+    setEditRecipeDialogOpen(true);
   };
 
-  const handleEditClose = () => {
-    setEditDialogOpen(false);
-  };
-
-  const handleDelete = () => {
+  const handleRecipeDelete = () => {
     setDeleteDialogOpen(false);
-    removeCard(recipe);
+    onRecipeDelete(recipe);
+  };
+
+  const handleEditRecipeDialogClose = () => {
+    setEditRecipeDialogOpen(false);
   };
 
   const handleFavoriteClick = () => {
     recipe.favorite = !recipe.favorite;
-    handleFavoriteSort();
+    onFavoriteSort();
   };
 
   return (
@@ -72,27 +77,30 @@ const RecipeCard = ({ recipe, removeCard, handleFavoriteSort, editRecipe }) => {
           <IconButton
             aria-label="delete recipe"
             className={styles.deleteIcon}
-            onClick={handleDeleteOpen}
+            onClick={handleDeleteDialogOpen}
           >
             <DeleteIcon />
           </IconButton>
-          <IconButton aria-label="edit recipe" onClick={handleEditOpen}>
+          <IconButton
+            aria-label="edit recipe"
+            onClick={handleEditRecipeDialogOpen}
+          >
             <EditIcon />
           </IconButton>
         </CardActions>
       </Card>
 
       <RecipeDialog
-        isOpen={editDialogOpen}
-        recipeDialogClose={handleEditClose}
-        recipeDialogSubmit={editRecipe}
+        isOpen={editRecipeDialogOpen}
+        onClose={handleEditRecipeDialogClose}
+        onSubmit={onRecipeEdit}
         recipe={recipe}
       />
 
       <DeleteRecipeDialog
         isOpen={deleteDialogOpen}
-        handleCardDelete={handleDelete}
-        handleDialogClose={handleDeleteClose}
+        onClose={handleDeleteDialogClose}
+        onDelete={handleRecipeDelete}
         recipe={recipe}
       />
     </>

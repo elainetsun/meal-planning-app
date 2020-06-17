@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import RecipeService from '../../services/RecipeService';
 
 const RecipesLibrary = () => {
-  const [recipeDialogOpen, setRecipeDialogOpen] = useState(false);
+  const [addRecipeDialogOpen, setAddRecipeDialogOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [recipes, setRecipes] = useState(
     RecipeService.getRecipes().sort(x => {
@@ -26,15 +26,15 @@ const RecipesLibrary = () => {
     return recipe.name.toLowerCase().includes(search.toLowerCase());
   });
 
-  const recipeDialogClose = () => {
-    setRecipeDialogOpen(false);
+  const handleAddRecipeDialogClose = () => {
+    setAddRecipeDialogOpen(false);
   };
 
-  const recipeDialogAddSubmit = recipe => {
+  const handleAddRecipeDialogSubmit = recipe => {
     setRecipes(recipes.concat(recipe));
   };
 
-  const recipeDialogEditSubmit = editedRecipe => {
+  const handleEditRecipeDialogSubmit = editedRecipe => {
     const originalRecipeIndex = recipes.findIndex(
       recipe => recipe.id === editedRecipe.id
     );
@@ -43,7 +43,7 @@ const RecipesLibrary = () => {
     setRecipes(newRecipes);
   };
 
-  const removeCard = recipe => {
+  const handleRecipeLibraryDelete = recipe => {
     const currentIndex = recipes.findIndex(
       currentRecipe => recipe === currentRecipe
     );
@@ -66,15 +66,15 @@ const RecipesLibrary = () => {
         <h3>Recipes Library</h3>
         <Button
           size="small"
-          onClick={() => setRecipeDialogOpen(true)}
+          onClick={() => setAddRecipeDialogOpen(true)}
           endIcon={<AddCircleOutline />}
         >
           Add
         </Button>
         <RecipeDialog
-          isOpen={recipeDialogOpen}
-          recipeDialogClose={recipeDialogClose}
-          recipeDialogSubmit={recipeDialogAddSubmit}
+          isOpen={addRecipeDialogOpen}
+          onClose={handleAddRecipeDialogClose}
+          onSubmit={handleAddRecipeDialogSubmit}
         />
       </div>
 
@@ -93,9 +93,9 @@ const RecipesLibrary = () => {
           return (
             <RecipeCard
               recipe={recipe}
-              editRecipe={recipeDialogEditSubmit}
-              removeCard={removeCard}
-              handleFavoriteSort={handleFavoriteSort}
+              onRecipeEdit={handleEditRecipeDialogSubmit}
+              onRecipeDelete={handleRecipeLibraryDelete}
+              onFavoriteSort={handleFavoriteSort}
               key={recipe.id}
             />
           );

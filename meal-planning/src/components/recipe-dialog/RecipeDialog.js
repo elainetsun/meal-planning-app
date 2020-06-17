@@ -9,12 +9,7 @@ import styles from './RecipeDialog.module.scss';
 import TagSelector from '../tag-selector/TagSelector';
 import IngredientSelector from '../ingredient-selector/IngredientSelector';
 
-const RecipeDialog = ({
-  isOpen,
-  recipeDialogClose,
-  recipeDialogSubmit,
-  recipe
-}) => {
+const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
   const defaultRecipeState = {
     id: recipe ? recipe.id : Math.random() * 100,
     name: recipe ? recipe.name : '',
@@ -22,22 +17,22 @@ const RecipeDialog = ({
     ingredients: recipe ? recipe.ingredients : []
   };
 
-  const [recipeState, setRecipe] = useState(defaultRecipeState);
+  const [currentRecipe, setCurrentRecipe] = useState(defaultRecipeState);
 
   const handleClose = () => {
-    recipeDialogClose();
-    setRecipe(defaultRecipeState);
+    onClose();
+    setCurrentRecipe(defaultRecipeState);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    recipeDialogSubmit(recipeState);
-    recipeDialogClose();
+    onSubmit(currentRecipe);
+    onClose();
   };
 
   const handleChange = event => {
-    setRecipe({
-      ...recipeState,
+    setCurrentRecipe({
+      ...currentRecipe,
       [event.target.id]: event.target.value
     });
   };
@@ -52,7 +47,7 @@ const RecipeDialog = ({
           quantity: i.quantity
         });
       });
-      setRecipe({ ...recipeState, ingredients });
+      setCurrentRecipe({ ...currentRecipe, ingredients });
     }
   };
 
@@ -71,9 +66,9 @@ const RecipeDialog = ({
               id="name"
               label="Recipe Name"
               type="text"
-              error={recipeState.name === ''}
-              helperText={recipeState.name === '' ? 'Required*' : ''}
-              defaultValue={recipeState.name}
+              error={currentRecipe.name === ''}
+              helperText={currentRecipe.name === '' ? 'Required*' : ''}
+              defaultValue={currentRecipe.name}
               onChange={handleChange}
               fullWidth
             />
@@ -82,16 +77,16 @@ const RecipeDialog = ({
                 id="description"
                 label="Description"
                 type="text-area"
-                error={recipeState.description === ''}
-                helperText={recipeState.description === '' ? 'Required*' : ''}
-                defaultValue={recipeState.description}
+                error={currentRecipe.description === ''}
+                helperText={currentRecipe.description === '' ? 'Required*' : ''}
+                defaultValue={currentRecipe.description}
                 onChange={handleChange}
                 fullWidth
               />
             </div>
             <IngredientSelector
               handleIngredientChange={handleIngredientChange}
-              ingredients={recipeState.ingredients}
+              ingredients={currentRecipe.ingredients}
             />
             <TagSelector />
           </DialogContent>
@@ -103,7 +98,7 @@ const RecipeDialog = ({
               type="submit"
               value="Submit"
               color="primary"
-              disabled={!(recipeState.name && recipeState.description)}
+              disabled={!(currentRecipe.name && currentRecipe.description)}
             >
               Submit
             </Button>

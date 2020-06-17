@@ -7,21 +7,24 @@ import Button from '@material-ui/core/Button';
 import IngredientSelector from '../ingredient-selector/IngredientSelector';
 import styles from './AddIngredientDialog.module.scss';
 
-const AddIngredientDialog = ({isOpen, handleDialogClose, handleDialogSubmit}) => {
-  
+const AddIngredientDialog = ({
+  isOpen,
+  handleDialogClose,
+  handleDialogSubmit
+}) => {
   const [ingredientList, setIngredientList] = useState([]);
-  
+
   const handleClose = () => {
-        handleDialogClose();
-        setIngredientList([]);
-    };
+    handleDialogClose();
+    setIngredientList([]);
+  };
 
   const handleSubmit = event => {
-      event.preventDefault();
-      handleDialogSubmit(ingredientList);
-      setIngredientList([]);
+    event.preventDefault();
+    handleDialogSubmit(ingredientList);
+    setIngredientList([]);
   };
-    
+
   const handleIngredientChange = newIngredients => {
     if (newIngredients.length > 0) {
       const ingredients = [];
@@ -33,20 +36,20 @@ const AddIngredientDialog = ({isOpen, handleDialogClose, handleDialogSubmit}) =>
         });
       });
       setIngredientList(ingredients);
-    } else{
+    } else {
       setIngredientList([]);
     }
   };
 
-    return(
-     <div>
-    <Dialog
-     className={styles.dialog}
-     open={isOpen}
-     onClose={handleClose}
-     aria-labelledby="form-dialog-title"
-    > 
-     <form onSubmit={handleSubmit}>
+  return (
+    <div>
+      <Dialog
+        className={styles.dialog}
+        open={isOpen}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <form onSubmit={handleSubmit}>
           <DialogTitle id="form-dialog-title">ADD NEW INGREDIENT</DialogTitle>
           <DialogContent>
             <IngredientSelector
@@ -57,14 +60,19 @@ const AddIngredientDialog = ({isOpen, handleDialogClose, handleDialogSubmit}) =>
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>
-            <Button type="submit" value="Submit" color="primary" disabled = {ingredientList.length === 0}>
+            <Button
+              type="submit"
+              value="Submit"
+              color="primary"
+              disabled={ingredientList.length === 0}
+            >
               Submit
             </Button>
           </DialogActions>
         </form>
       </Dialog>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default AddIngredientDialog;

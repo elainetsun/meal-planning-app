@@ -21,7 +21,7 @@ const ShoppingList = () => {
     setIsModalOpen(true);
   };
 
-  const handleDialogClose = () => {
+  const handleAddIngredientDialogClose = () => {
     setIsModalOpen(false);
   };
 
@@ -30,7 +30,7 @@ const ShoppingList = () => {
     setList(newList);
   };
 
-  const handleDialogSubmit = newIngredients => {
+  const handleAddIngredientDialogSubmit = newIngredients => {
     setIsModalOpen(false);
     setList(currentList.concat(newIngredients));
   };
@@ -44,8 +44,8 @@ const ShoppingList = () => {
         </Button>
         <AddIngredientDialog
           isOpen={isModalOpen}
-          handleDialogSubmit={handleDialogSubmit}
-          handleDialogClose={handleDialogClose}
+          onSubmit={handleAddIngredientDialogSubmit}
+          onClose={handleAddIngredientDialogClose}
         />
       </div>
 

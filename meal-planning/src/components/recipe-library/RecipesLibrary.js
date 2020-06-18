@@ -3,13 +3,13 @@ import RecipeCard from '../recipe-card/RecipeCard';
 import styles from './RecipesLibrary.module.scss';
 import Button from '@material-ui/core/Button';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
-import AddRecipeDialog from '../add-recipe-dialog/AddRecipeDialog';
+import RecipeDialog from '../recipe-dialog/RecipeDialog';
 import TextField from '@material-ui/core/TextField';
 import RecipeService from '../../services/RecipeService';
 
 const RecipesLibrary = () => {
+  const [addRecipeDialogOpen, setAddRecipeDialogOpen] = useState(false);
   const [search, setSearch] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [recipes, setRecipes] = useState(
     RecipeService.getRecipes().sort(x => {
       return x.favorite ? -1 : 1;
@@ -26,20 +26,29 @@ const RecipesLibrary = () => {
     return recipe.name.toLowerCase().includes(search.toLowerCase());
   });
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const handleAddRecipeDialogClose = () => {
+    setAddRecipeDialogOpen(false);
   };
 
-  const handleDialogClose = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleDialogSumbit = recipe => {
-    setIsModalOpen(false);
+  const handleAddRecipeDialogSubmit = recipe => {
     setRecipes(recipes.concat(recipe));
   };
 
-  const removeCard = recipe => {
+  const handleEditRecipeDialogSubmit = editedRecipe => {
+    const originalRecipeIndex = recipes.findIndex(
+      recipe => recipe.id === editedRecipe.id
+    );
+
+    if (originalRecipeIndex) {
+      const newRecipes = [...recipes];
+      newRecipes.splice(originalRecipeIndex, 1, editedRecipe);
+      setRecipes(newRecipes);
+    } else {
+      throw new Error(`Could not edit recipe: Invalid ID: ${editedRecipe.id}`);
+    }
+  };
+
+  const handleRecipeLibraryDelete = recipe => {
     const currentIndex = recipes.findIndex(
       currentRecipe => recipe === currentRecipe
     );
@@ -60,13 +69,17 @@ const RecipesLibrary = () => {
     <>
       <div className={styles.recipesHeader}>
         <h3>Recipes Library</h3>
-        <Button size="small" onClick={openModal} endIcon={<AddCircleOutline />}>
+        <Button
+          size="small"
+          onClick={() => setAddRecipeDialogOpen(true)}
+          endIcon={<AddCircleOutline />}
+        >
           Add
         </Button>
-        <AddRecipeDialog
-          isOpen={isModalOpen}
-          handleDialogSumbit={handleDialogSumbit}
-          handleDialogClose={handleDialogClose}
+        <RecipeDialog
+          isOpen={addRecipeDialogOpen}
+          onClose={handleAddRecipeDialogClose}
+          onSubmit={handleAddRecipeDialogSubmit}
         />
       </div>
 
@@ -85,8 +98,9 @@ const RecipesLibrary = () => {
           return (
             <RecipeCard
               recipe={recipe}
-              removeCard={removeCard}
-              handleFavoriteSort={handleFavoriteSort}
+              onRecipeEdit={handleEditRecipeDialogSubmit}
+              onRecipeDelete={handleRecipeLibraryDelete}
+              onFavoriteSort={handleFavoriteSort}
               key={recipe.id}
             />
           );

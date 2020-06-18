@@ -5,23 +5,18 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import IngredientSelector from '../ingredient-selector/IngredientSelector';
-import styles from './AddIngredientDialog.module.scss';
 
-const AddIngredientDialog = ({
-  isOpen,
-  handleDialogClose,
-  handleDialogSubmit
-}) => {
+const AddIngredientDialog = ({ isOpen, onSubmit, onClose }) => {
   const [ingredientList, setIngredientList] = useState([]);
 
   const handleClose = () => {
-    handleDialogClose();
     setIngredientList([]);
+    onClose();
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    handleDialogSubmit(ingredientList);
+    onSubmit(ingredientList);
     setIngredientList([]);
   };
 
@@ -30,8 +25,8 @@ const AddIngredientDialog = ({
       const ingredients = [];
       newIngredients.forEach(i => {
         ingredients.push({
-          id: i.ingredient,
-          name: i.ingredient,
+          id: Math.random() * 100,
+          name: i.name,
           quantity: i.quantity
         });
       });
@@ -44,7 +39,6 @@ const AddIngredientDialog = ({
   return (
     <div>
       <Dialog
-        className={styles.dialog}
         open={isOpen}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
@@ -52,9 +46,7 @@ const AddIngredientDialog = ({
         <form onSubmit={handleSubmit}>
           <DialogTitle id="form-dialog-title">ADD NEW INGREDIENT</DialogTitle>
           <DialogContent>
-            <IngredientSelector
-              handleIngredientChange={handleIngredientChange}
-            />
+            <IngredientSelector onIngredientChange={handleIngredientChange} />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">

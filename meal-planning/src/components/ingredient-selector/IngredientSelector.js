@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import Paper from '@material-ui/core/Paper';
-const IngredientSelector = ({ handleIngredientChange, ingredients }) => {
+
+const IngredientSelector = ({ onIngredientChange, ingredients }) => {
   const [state, setState] = useState({
     columns: [
       { title: 'Ingredient', field: 'name' },
@@ -42,7 +43,7 @@ const IngredientSelector = ({ handleIngredientChange, ingredients }) => {
               setState(prevState => {
                 const data = [...prevState.data];
                 data.push(newData);
-                handleIngredientChange(data);
+                onIngredientChange(data);
                 return { ...prevState, data };
               });
             }),
@@ -53,7 +54,7 @@ const IngredientSelector = ({ handleIngredientChange, ingredients }) => {
                 setState(prevState => {
                   const data = [...prevState.data];
                   data[data.indexOf(oldData)] = newData;
-                  handleIngredientChange(data);
+                  onIngredientChange(data);
                   return { ...prevState, data };
                 });
               }
@@ -64,7 +65,7 @@ const IngredientSelector = ({ handleIngredientChange, ingredients }) => {
               setState(prevState => {
                 const data = [...prevState.data];
                 data.splice(data.indexOf(oldData), 1);
-                handleIngredientChange(data);
+                onIngredientChange(data);
                 return { ...prevState, data };
               });
             })

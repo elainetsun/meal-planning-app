@@ -38,9 +38,14 @@ const RecipesLibrary = () => {
     const originalRecipeIndex = recipes.findIndex(
       recipe => recipe.id === editedRecipe.id
     );
-    const newRecipes = [...recipes];
-    newRecipes.splice(originalRecipeIndex, 1, editedRecipe);
-    setRecipes(newRecipes);
+
+    if (originalRecipeIndex) {
+      const newRecipes = [...recipes];
+      newRecipes.splice(originalRecipeIndex, 1, editedRecipe);
+      setRecipes(newRecipes);
+    } else {
+      throw new Error("Couldn't edit recipe - missing ID");
+    }
   };
 
   const handleRecipeLibraryDelete = recipe => {

@@ -20,8 +20,8 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
   const [currentRecipe, setCurrentRecipe] = useState(defaultRecipeState);
 
   const handleClose = () => {
-    onClose();
     setCurrentRecipe(defaultRecipeState);
+    onClose();
   };
 
   const handleSubmit = event => {
@@ -60,7 +60,9 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
         aria-labelledby="form-dialog-title"
       >
         <form onSubmit={handleSubmit}>
-          <DialogTitle id="form-dialog-title">ADD NEW RECIPE</DialogTitle>
+          <DialogTitle id="form-dialog-title">
+            {recipe ? 'EDIT RECIPE' : 'ADD NEW RECIPE'}
+          </DialogTitle>
           <DialogContent>
             <TextField
               id="name"
@@ -85,7 +87,7 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
               />
             </div>
             <IngredientSelector
-              handleIngredientChange={handleIngredientChange}
+              onIngredientChange={handleIngredientChange}
               ingredients={currentRecipe.ingredients}
             />
             <TagSelector />

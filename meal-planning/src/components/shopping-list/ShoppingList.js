@@ -10,7 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import styles from './ShoppingList.module.scss';
 import Button from '@material-ui/core/Button';
 import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
-import RecipeDialog from '../recipe-dialog/RecipeDialog';
+import AddIngredientDialog from '../add-ingredient-dialog/AddIngredientDialog';
 import RecipeService from '../../services/RecipeService';
 
 const ShoppingList = () => {
@@ -21,7 +21,7 @@ const ShoppingList = () => {
     setIsModalOpen(true);
   };
 
-  const handleDialogClose = () => {
+  const handleAddIngredientDialogClose = () => {
     setIsModalOpen(false);
   };
 
@@ -30,7 +30,7 @@ const ShoppingList = () => {
     setList(newList);
   };
 
-  const handleDialogSubmit = newIngredients => {
+  const handleAddIngredientDialogSubmit = newIngredients => {
     setIsModalOpen(false);
     setList(currentList.concat(newIngredients));
   };
@@ -42,10 +42,10 @@ const ShoppingList = () => {
         <Button size="small" onClick={openModal} endIcon={<AddCircleOutline />}>
           Add
         </Button>
-        <RecipeDialog
+        <AddIngredientDialog
           isOpen={isModalOpen}
-          handleDialogSubmit={handleDialogSubmit}
-          handleDialogClose={handleDialogClose}
+          onSubmit={handleAddIngredientDialogSubmit}
+          onClose={handleAddIngredientDialogClose}
         />
       </div>
 

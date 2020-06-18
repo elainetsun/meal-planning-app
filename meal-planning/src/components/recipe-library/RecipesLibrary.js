@@ -39,7 +39,7 @@ const RecipesLibrary = () => {
       recipe => recipe.id === editedRecipe.id
     );
 
-    if (originalRecipeIndex) {
+    if (originalRecipeIndex > 0) {
       const newRecipes = [...recipes];
       newRecipes.splice(originalRecipeIndex, 1, editedRecipe);
       setRecipes(newRecipes);

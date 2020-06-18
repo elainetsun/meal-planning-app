@@ -44,7 +44,7 @@ const RecipesLibrary = () => {
       newRecipes.splice(originalRecipeIndex, 1, editedRecipe);
       setRecipes(newRecipes);
     } else {
-      throw new Error("Couldn't edit recipe - missing ID");
+      throw new Error(`Could not edit recipe: Invalid ID: ${editedRecipe.id}`);
     }
   };
 

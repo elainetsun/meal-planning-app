@@ -8,31 +8,29 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 const DeleteRecipeDialog = ({ isOpen, onDelete, onClose, recipe }) => {
   return (
-    <div>
-      <Dialog
-        open={isOpen}
-        onClose={() => onClose()}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {'Delete the recipe for ' + recipe.name.toLowerCase() + '?'}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            The recipe will be permanently deleted.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => onClose()} color="primary">
-            No
-          </Button>
-          <Button onClick={() => onDelete()} color="primary">
-            Yes
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <Dialog
+      open={isOpen}
+      onClose={() => onClose()}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">
+        {'Delete the recipe for ' + recipe.name.toLowerCase() + '?'}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          The recipe will be permanently deleted.
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => onClose()} color="primary">
+          No
+        </Button>
+        <Button onClick={() => onDelete()} color="primary">
+          Yes
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

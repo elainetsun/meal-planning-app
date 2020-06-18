@@ -1,6 +1,21 @@
 .card {
-  width: 300px;
+  display: flex;
+  flex-direction: column;
   margin: 10px;
+  flex: 0 1 100%;
+
+  @media screen and (min-width: 37.5em) {
+    flex: 0 1 calc(50% - 2em);
+  }
+
+  @media screen and (min-width: 62.5em) {
+    flex: 0 1 calc(33% - 2em);
+  }
+
+  @media screen and (min-width: 87.5em) {
+    flex: 0 1 calc(20% - 2em);
+  }
+
 
   .header {
     background: lightblue;
@@ -8,6 +23,7 @@
 
   .actions {
     justify-content: space-between;
+    margin-top: auto;
   }
 
   .favoriteIcon {

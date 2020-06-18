@@ -52,62 +52,59 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
   };
 
   return (
-    <div className={styles.dialogContainer}>
-      <Dialog
-        className={styles.dialog}
-        open={isOpen}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <form onSubmit={handleSubmit}>
-          <DialogTitle id="form-dialog-title">
-            {recipe ? 'EDIT RECIPE' : 'ADD NEW RECIPE'}
-          </DialogTitle>
-          <DialogContent>
+    <Dialog
+      open={isOpen}
+      onClose={handleClose}
+      aria-labelledby="form-dialog-title"
+    >
+      <form onSubmit={handleSubmit}>
+        <DialogTitle id="form-dialog-title">
+          {recipe ? 'EDIT RECIPE' : 'ADD NEW RECIPE'}
+        </DialogTitle>
+        <DialogContent>
+          <TextField
+            id="name"
+            label="Recipe Name"
+            type="text"
+            error={currentRecipe.name === ''}
+            helperText={currentRecipe.name === '' ? 'Required*' : ''}
+            defaultValue={currentRecipe.name}
+            onChange={handleChange}
+            fullWidth
+          />
+          <div className={styles.description}>
             <TextField
-              id="name"
-              label="Recipe Name"
-              type="text"
-              error={currentRecipe.name === ''}
-              helperText={currentRecipe.name === '' ? 'Required*' : ''}
-              defaultValue={currentRecipe.name}
+              id="description"
+              label="Description"
+              type="text-area"
+              error={currentRecipe.description === ''}
+              helperText={currentRecipe.description === '' ? 'Required*' : ''}
+              defaultValue={currentRecipe.description}
               onChange={handleChange}
               fullWidth
             />
-            <div className={styles.description}>
-              <TextField
-                id="description"
-                label="Description"
-                type="text-area"
-                error={currentRecipe.description === ''}
-                helperText={currentRecipe.description === '' ? 'Required*' : ''}
-                defaultValue={currentRecipe.description}
-                onChange={handleChange}
-                fullWidth
-              />
-            </div>
-            <IngredientSelector
-              onIngredientChange={handleIngredientChange}
-              ingredients={currentRecipe.ingredients}
-            />
-            <TagSelector />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button
-              type="submit"
-              value="Submit"
-              color="primary"
-              disabled={!(currentRecipe.name && currentRecipe.description)}
-            >
-              Submit
-            </Button>
-          </DialogActions>
-        </form>
-      </Dialog>
-    </div>
+          </div>
+          <IngredientSelector
+            onIngredientChange={handleIngredientChange}
+            ingredients={currentRecipe.ingredients}
+          />
+          <TagSelector />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            value="Submit"
+            color="primary"
+            disabled={!(currentRecipe.name && currentRecipe.description)}
+          >
+            Submit
+          </Button>
+        </DialogActions>
+      </form>
+    </Dialog>
   );
 };
 

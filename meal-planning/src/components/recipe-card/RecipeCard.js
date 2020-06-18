@@ -88,14 +88,13 @@ const RecipeCard = ({
             <EditIcon />
           </IconButton>
         </CardActions>
+        <RecipeDialog
+          isOpen={editRecipeDialogOpen}
+          onClose={handleEditRecipeDialogClose}
+          onSubmit={onRecipeEdit}
+          recipe={recipe}
+        />
       </Card>
-
-      <RecipeDialog
-        isOpen={editRecipeDialogOpen}
-        onClose={handleEditRecipeDialogClose}
-        onSubmit={onRecipeEdit}
-        recipe={recipe}
-      />
 
       <DeleteRecipeDialog
         isOpen={deleteDialogOpen}

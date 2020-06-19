@@ -14,7 +14,8 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
     id: recipe ? recipe.id : Math.random() * 100,
     name: recipe ? recipe.name : '',
     description: recipe ? recipe.description : '',
-    ingredients: recipe ? recipe.ingredients : []
+    ingredients: recipe ? recipe.ingredients : [],
+    favorite: recipe ? recipe.favorite : false
   };
 
   const [currentRecipe, setCurrentRecipe] = useState(defaultRecipeState);

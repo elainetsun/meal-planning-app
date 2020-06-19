@@ -108,9 +108,21 @@ const RecipeCard = ({
 
 RecipeCard.propTypes = {
   recipe: PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string
-  })
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    ingredients: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), //eventually should just be a number once we figure ingredient IDs out
+        name: PropTypes.string.isRequired,
+        quantity: PropTypes.number.isRequired
+      })
+    ),
+    favorite: PropTypes.bool.isRequired
+  }).isRequired,
+  onRecipeDelete: PropTypes.func.isRequired,
+  onRecipeEdit: PropTypes.func.isRequired,
+  onFavoriteSort: PropTypes.func.isRequired
 };
 
 export default RecipeCard;

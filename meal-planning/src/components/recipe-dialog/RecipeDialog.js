@@ -45,7 +45,7 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
         ingredients.push({
           id: i.name, //temporarily setting the ID of newly created / edited ingredients to their name to avoid key error
           name: i.name,
-          quantity: i.quantity
+          quantity: Number(i.quantity)
         });
       });
     }

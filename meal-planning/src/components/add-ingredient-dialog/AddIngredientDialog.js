@@ -27,7 +27,7 @@ const AddIngredientDialog = ({ isOpen, onSubmit, onClose }) => {
         ingredients.push({
           id: Math.random() * 100,
           name: i.name,
-          quantity: i.quantity
+          quantity: Number(i.quantity)
         });
       });
       setIngredientList(ingredients);

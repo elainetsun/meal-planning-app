@@ -5,6 +5,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import IngredientSelector from '../ingredient-selector/IngredientSelector';
+import PropTypes from 'prop-types';
 
 const AddIngredientDialog = ({ isOpen, onSubmit, onClose }) => {
   const [ingredientList, setIngredientList] = useState([]);
@@ -65,6 +66,12 @@ const AddIngredientDialog = ({ isOpen, onSubmit, onClose }) => {
       </Dialog>
     </div>
   );
+};
+
+AddIngredientDialog.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 export default AddIngredientDialog;

@@ -100,7 +100,7 @@ const RecipeCard = ({
         isOpen={deleteDialogOpen}
         onClose={handleDeleteDialogClose}
         onDelete={handleRecipeDelete}
-        recipe={recipe}
+        recipeName={recipe.name}
       />
     </>
   );

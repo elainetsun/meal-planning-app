@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import AppToolbar from './AppToolbar';
 
 describe('Links are rendered', () => {
@@ -11,7 +12,11 @@ describe('Links are rendered', () => {
   ];
 
   beforeEach(() => {
-    component = render(<AppToolbar />);
+    component = render(
+      <Router>
+        <AppToolbar />
+      </Router>
+    );
   });
 
   test.each(links)('link and proper href exist', link => {

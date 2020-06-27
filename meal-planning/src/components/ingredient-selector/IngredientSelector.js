@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import Paper from '@material-ui/core/Paper';
+import PropTypes from 'prop-types';
 
 const IngredientSelector = ({ onIngredientChange, ingredients }) => {
   const [state, setState] = useState({
@@ -78,6 +79,11 @@ const IngredientSelector = ({ onIngredientChange, ingredients }) => {
       />
     </div>
   );
+};
+
+IngredientSelector.propTypes = {
+  onIngredientChange: PropTypes.func.isRequired,
+  ingredients: PropTypes.array
 };
 
 export default IngredientSelector;

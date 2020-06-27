@@ -5,6 +5,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import IngredientSelector from '../ingredient-selector/IngredientSelector';
+import PropTypes from 'prop-types';
 
 const AddIngredientDialog = ({ isOpen, onSubmit, onClose }) => {
   const [ingredientList, setIngredientList] = useState([]);
@@ -27,7 +28,7 @@ const AddIngredientDialog = ({ isOpen, onSubmit, onClose }) => {
         ingredients.push({
           id: Math.random() * 100,
           name: i.name,
-          quantity: i.quantity
+          quantity: Number(i.quantity)
         });
       });
       setIngredientList(ingredients);
@@ -65,6 +66,12 @@ const AddIngredientDialog = ({ isOpen, onSubmit, onClose }) => {
       </Dialog>
     </div>
   );
+};
+
+AddIngredientDialog.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 export default AddIngredientDialog;

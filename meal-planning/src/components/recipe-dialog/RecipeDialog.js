@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import styles from './RecipeDialog.module.scss';
+import PropTypes from 'prop-types';
 import TagSelector from '../tag-selector/TagSelector';
 import IngredientSelector from '../ingredient-selector/IngredientSelector';
 
@@ -14,7 +15,8 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
     id: recipe ? recipe.id : Math.random() * 100,
     name: recipe ? recipe.name : '',
     description: recipe ? recipe.description : '',
-    ingredients: recipe ? recipe.ingredients : []
+    ingredients: recipe ? recipe.ingredients : [],
+    favorite: recipe ? recipe.favorite : false
   };
 
   const [currentRecipe, setCurrentRecipe] = useState(defaultRecipeState);
@@ -44,7 +46,7 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
         ingredients.push({
           id: i.name, //temporarily setting the ID of newly created / edited ingredients to their name to avoid key error
           name: i.name,
-          quantity: i.quantity
+          quantity: Number(i.quantity)
         });
       });
     }
@@ -106,6 +108,25 @@ const RecipeDialog = ({ isOpen, onClose, onSubmit, recipe }) => {
       </form>
     </Dialog>
   );
+};
+
+RecipeDialog.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  recipe: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    ingredients: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), //eventually should just be a number once we figure ingredient IDs out
+        name: PropTypes.string.isRequired,
+        quantity: PropTypes.number.isRequired
+      })
+    ),
+    favorite: PropTypes.bool.isRequired
+  })
 };
 
 export default RecipeDialog;

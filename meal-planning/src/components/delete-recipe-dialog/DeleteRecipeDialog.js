@@ -5,8 +5,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import PropTypes from 'prop-types';
 
-const DeleteRecipeDialog = ({ isOpen, onDelete, onClose, recipe }) => {
+const DeleteRecipeDialog = ({ isOpen, onDelete, onClose, recipeName }) => {
   return (
     <Dialog
       open={isOpen}
@@ -15,7 +16,7 @@ const DeleteRecipeDialog = ({ isOpen, onDelete, onClose, recipe }) => {
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">
-        {'Delete the recipe for ' + recipe.name.toLowerCase() + '?'}
+        {'Delete the recipe for ' + recipeName.toLowerCase() + '?'}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
@@ -32,6 +33,13 @@ const DeleteRecipeDialog = ({ isOpen, onDelete, onClose, recipe }) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+DeleteRecipeDialog.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  recipeName: PropTypes.string.isRequired
 };
 
 export default DeleteRecipeDialog;

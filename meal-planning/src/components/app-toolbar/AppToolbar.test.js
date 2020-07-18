@@ -1,26 +1,24 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppToolbar from './AppToolbar';
 
-describe('Links are rendered', () => {
-  let component;
-
+describe('AppToolbar tests', () => {
   const links = [
     { text: 'Recipes', location: '/recipes' },
     { text: 'Shopping List', location: '/shopping-list' }
   ];
 
   beforeEach(() => {
-    component = render(
+    render(
       <Router>
         <AppToolbar />
       </Router>
     );
   });
 
-  test.each(links)('link and proper href exist', link => {
-    const linkElement = component.getByText(link.text);
-    expect(linkElement).toHaveAttribute('href', link.location);
+  test.each(links)('links and proper hrefs exist', link => {
+    const linkItem = screen.getByRole('link', { name: link.text });
+    expect(linkItem).toHaveAttribute('href', link.location);
   });
 });

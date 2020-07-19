@@ -50,6 +50,4 @@ describe('AddIngredientDialog tests', () => {
     const cancelButton = screen.getByRole('button', { name: /Cancel/i });
     expect(cancelButton).toBeInTheDocument();
   });
-
-  test()
 });

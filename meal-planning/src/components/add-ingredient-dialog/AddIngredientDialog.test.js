@@ -31,4 +31,25 @@ describe('AddIngredientDialog tests', () => {
       isOpen = true;
     }
   });
+
+  test('Headings exist in DOM', () => {
+    const headings = screen.getAllByRole('heading');
+    expect(headings).toHaveLength(2);
+
+    expect(headings[0].textContent).toMatch(/Add New Ingredient/i);
+    expect(headings[1].textContent).toMatch(/Ingredients List/i);
+  });
+
+  test('Buttons exist in DOM and submit', () => {
+    const addButton = screen.getByRole('button', { name: /Add/i });
+    expect(addButton).toBeInTheDocument();
+
+    const submitButton = screen.getByRole('button', { name: /Submit/i });
+    expect(submitButton).toBeInTheDocument();
+
+    const cancelButton = screen.getByRole('button', { name: /Cancel/i });
+    expect(cancelButton).toBeInTheDocument();
+  });
+
+  test()
 });

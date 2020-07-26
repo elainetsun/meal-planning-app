@@ -10,11 +10,20 @@ import RecipeService from '../../services/RecipeService';
 const RecipesLibrary = () => {
   const [addRecipeDialogOpen, setAddRecipeDialogOpen] = useState(false);
   const [search, setSearch] = useState('');
-  const [recipes, setRecipes] = useState(
-    RecipeService.getRecipes().sort(x => {
-      return x.favorite ? -1 : 1;
-    })
-  );
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    const getRecipesData = async () => {
+      const recipes = await RecipeService.getRecipes();
+      const sortedRecipes = recipes.sort(x => {
+        return x.favorite ? -1 : 1;
+      });
+
+      setRecipes(sortedRecipes);
+    };
+
+    getRecipesData();
+  }, []);
 
   useEffect(() => {
     if (recipes.length) {

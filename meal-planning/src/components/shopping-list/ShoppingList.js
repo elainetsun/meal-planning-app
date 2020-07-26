@@ -15,7 +15,7 @@ import RecipeService from '../../services/RecipeService';
 
 const ShoppingList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentList, setList] = React.useState(RecipeService.getIngredients());
+  const [currentList, setList] = useState(RecipeService.getIngredients());
 
   const openModal = () => {
     setIsModalOpen(true);

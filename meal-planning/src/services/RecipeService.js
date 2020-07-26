@@ -1,3 +1,5 @@
+const baseUrl = 'http://localhost:3001';
+
 let recipes = [
   {
     id: 1,
@@ -34,8 +36,9 @@ let recipes = [
   }
 ];
 
-const getRecipes = () => {
-  return recipes;
+const getRecipes = async () => {
+  const response = await fetch(`${baseUrl}/api/recipes`);
+  return response.json();
 };
 
 const saveRecipes = newRecipes => {
@@ -44,6 +47,7 @@ const saveRecipes = newRecipes => {
 
 const getIngredients = () => {
   let ingredients = [];
+
   recipes.forEach(r => {
     r.ingredients.forEach(i => {
       ingredients.push(i);

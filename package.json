@@ -1,0 +1,24 @@
+{
+  "name": "meal-planning-app",
+  "version": "1.0.0",
+  "description": "Select meals from a custom catalog and generate a shopping list.",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "cd meal-planning && npm start",
+    "server": "cd server && npm run dev",
+    "start": "concurrently \"npm run frontend\" \"npm run server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elainetsun/meal-planning-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elainetsun/meal-planning-app/issues"
+  },
+  "homepage": "https://github.com/elainetsun/meal-planning-app#readme",
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
+}
